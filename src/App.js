@@ -12,8 +12,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { FeedTwo } from "./component/Dashboard/DashboardComponent/FeedTwo";
 import { ConsumerLogin } from "./component/Consumer/ConsumerLogin/ConsumerLogin";
 import { ConsumerSignup } from "./component/Consumer/ConsumerSignup/ConsumerSignup";
-import { AdminSignup } from "./component/Admin/AdminSignup";
+import { AdminTemplate } from "./component/Admin/AdminTemplate";
 import { Dashboard } from "./component/Dashboard/Dashboard";
+import { AdminSignup } from "./component/Admin/AdminSignup";
 function App() {
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -35,7 +36,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/second" component={Dashboard} />
-          <Route exact path="/admin-signup" component={AdminSignup} />
+          <Route exact path="/admin-signup" component={AdminTemplate} />
+          <Route exact path="/admin-login" component={AdminSignup} />
         </Switch>
       </Router>
     </div>

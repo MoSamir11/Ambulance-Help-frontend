@@ -1,7 +1,7 @@
 import { Card,CardContent,Box,Typography,TextField,Button,Container,Grid,makeStyles } from "@material-ui/core";
 import Carousel from 'react-elastic-carousel';
 
-export const AdminSignup = () =>{
+export const AdminLogin = () =>{
     const useStyles = makeStyles((theme) => ({
         img:{
             width:'30vw',
@@ -16,11 +16,8 @@ export const AdminSignup = () =>{
         form: {
             padding: theme.spacing(2)
         },
-        item: {
-            marginBottom: theme.spacing(2)
-        },
         container1:{
-            padding:'10% 10% 5% 10% ',
+            padding:'22% 15% 5% 15% ',
             [theme.breakpoints.down("sm")]:{
                 padding:'0 3% 3% 5% ',
             }
@@ -41,7 +38,7 @@ export const AdminSignup = () =>{
         label:{
             color: '#3f414d',
             fontWeight:'normal',
-            padding:'3% 0 2% 3%'
+            padding:'3%'
         },
         division:{
             paddingTop: theme.spacing(3),
@@ -67,13 +64,8 @@ export const AdminSignup = () =>{
         <Container className={classes.container1}>
                             <Card className={classes.card1}>
                             <CardContent className={classes.content1}>
-                                <p style={{color:'#3f414d',fontSize:'3rem'}}>Sign Up</p>                                
-                                    <label htmlFor="name" className={classes.label}>Full Name</label>
-                                    <input type="text" name="name" className={classes.form_control} />
-                                <div className={classes.division}>
-                                    <label htmlFor="name" className={classes.label}>Email</label>
-                                    <input type="text" name="name" className={classes.form_control} />
-                                </div>
+                                <p style={{color:'#3f414d',fontSize:'3rem'}}>Sign In</p>                                
+                                    
                                 <div className={classes.division}>
                                     <label htmlFor="name" className={classes.label}>Phone</label>
                                     <input type="text" name="name" className={classes.form_control} />
@@ -84,9 +76,6 @@ export const AdminSignup = () =>{
                                 </div>
                                 <div className={classes.division}>
                                     <button className={classes.button}>Sign Up</button>
-                                </div>
-                                <div style={{textAlign:'center'}}>
-                                    <p>Already a member ? <span style={{color:'#089bab'}}>Sign In</span></p>
                                 </div>
                             </CardContent>
                             </Card>
