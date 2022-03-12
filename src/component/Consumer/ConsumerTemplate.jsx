@@ -1,11 +1,12 @@
-import { Card,CardContent,Container,Grid,makeStyles } from "@material-ui/core";
+import { Card,CardContent,Box,Typography,TextField,Button,Container,Grid,makeStyles } from "@material-ui/core";
 import { useState } from "react";
 import Carousel from 'react-elastic-carousel';
 import { Slide } from 'react-slideshow-image';
+import { ConsumerLogin } from "./ConsumerLogin";
+import { ConsumerSignup } from "./ConsumerSignup";
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
-import {AdminSignup} from './AdminSignup';
-import { AdminLogin } from "./AdminLogin";
-export const AdminTemplate = () =>{
+
+export const ConsumerTemplate = () =>{
     const useStyles = makeStyles((theme) => ({
         container: {
             padding: 40,
@@ -80,9 +81,9 @@ export const AdminTemplate = () =>{
       }));
       const classes = useStyles();
       const items= [
-          {id: 1, src: 'https://webartinfo.com/themeforest/medicil/img/banner.png'},
-          {id: 2, src: 'https://medservice.vercel.app/images/image-03.png'},
-          {id: 3, src: 'https://avstechnolabs.com/Themeforest/Medicapps/assets/images/hero/slider-2.png'},
+          {id: 1, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},
+          {id: 2, src: 'https://templates.iqonic.design/xray/html/images/login/1.png'},
+          {id: 3, src: 'https://templates.iqonic.design/xray/html/images/page-img/39.png'},
         ]
         const [otp,setOtp] = useState(false)
         const [text,setText] = useState("Submit")
@@ -106,8 +107,8 @@ export const AdminTemplate = () =>{
                     <Grid item md={6} xs={12}>
                         <Router>
                             <Switch>
-                                <Route exact path="/admin-signup" component={AdminSignup} />
-                                <Route exact path="/admin-login" component={AdminLogin} />
+                                <Route exact path="/consumer-signup" component={ConsumerSignup} />
+                                <Route exact path="/consumer-login" component={ConsumerLogin} />
                             </Switch>
                         </Router>
                     </Grid>

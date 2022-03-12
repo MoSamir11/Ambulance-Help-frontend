@@ -1,5 +1,5 @@
 import "./App.css";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Drawer, Grid } from "@material-ui/core";
 import { Person } from "@material-ui/icons";
 import React, { useState } from "react";
 import { Container, makeStyles } from "@material-ui/core";
@@ -10,11 +10,11 @@ import { Leftbar } from "./component/Dashboard/DashboardComponent/Leftbar";
 import { Add } from "./component/Dashboard/DashboardComponent/Add";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { FeedTwo } from "./component/Dashboard/DashboardComponent/FeedTwo";
-import { ConsumerLogin } from "./component/Consumer/ConsumerLogin/ConsumerLogin";
-import { ConsumerSignup } from "./component/Consumer/ConsumerSignup/ConsumerSignup";
-import { AdminTemplate } from "./component/Admin/AdminTemplate";
+import { ConsumerTemplate } from "./component/Consumer/ConsumerTemplate";
 import { Dashboard } from "./component/Dashboard/Dashboard";
-import { AdminSignup } from "./component/Admin/AdminSignup";
+import { AdminTemplate } from "./component/Admin/AdminTemplate";
+import { Navbar1 } from "./component/Landing/Navbar";
+import { ResponsiveDrawer } from "./Drawer/Drawer";
 function App() {
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -34,10 +34,13 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/" component={Navbar1} />
           <Route exact path="/second" component={Dashboard} />
+          <Route exact path="/consumer-signup" component={ConsumerTemplate} />
+          <Route exact path="/consumer-login" component={ConsumerTemplate} />
+          <Route exact path="/admin-login" component={AdminTemplate} />
           <Route exact path="/admin-signup" component={AdminTemplate} />
-          <Route exact path="/admin-login" component={AdminSignup} />
+          <Route exact path="/drawer" component={ResponsiveDrawer} />
         </Switch>
       </Router>
     </div>

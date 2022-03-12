@@ -1,7 +1,8 @@
 import { Card,CardContent,Box,Typography,TextField,Button,Container,Grid,makeStyles } from "@material-ui/core";
+import Carousel from 'react-elastic-carousel';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 
-export const AdminLogin = () =>{
+export const ConsumerSignup = () =>{
     const useStyles = makeStyles((theme) => ({
         img:{
             width:'30vw',
@@ -16,8 +17,11 @@ export const AdminLogin = () =>{
         form: {
             padding: theme.spacing(2)
         },
+        item: {
+            marginBottom: theme.spacing(2)
+        },
         container1:{
-            padding:'15% 15% 5% 15% ',
+            padding:'10% 10% 5% 10% ',
             [theme.breakpoints.down("sm")]:{
                 padding:'0 3% 3% 5% ',
             }
@@ -31,7 +35,7 @@ export const AdminLogin = () =>{
             lineHeight: '45px',
             background: 'transparent',
             border: '1px solid #d7dbda',
-            fontSize: '17px',
+            fontSize: '14px',
             color: '#a09e9e',
             borderRadius: '10px',
             paddingLeft:'20px'
@@ -39,7 +43,7 @@ export const AdminLogin = () =>{
         label:{
             color: '#3f414d',
             fontWeight:'normal',
-            padding:'3%'
+            padding:'3% 0 2% 3%'
         },
         division:{
             paddingTop: theme.spacing(3),
@@ -56,27 +60,38 @@ export const AdminLogin = () =>{
         }
       }));
       const classes = useStyles();
+      const items= [
+          {id: 1, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},
+          {id: 2, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},
+          {id: 3, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},
+        ]
     return(
-        <>
-            <Container className={classes.container1}>
-                <Card className={classes.card1}>
-                <CardContent className={classes.content1}>
-                                <p style={{color:'#3f414d',fontSize:'3rem'}}>Sign In</p>                                
-                                    <label htmlFor="name" className={classes.label}>Email</label>
+        <Container className={classes.container1}>
+                            <Card className={classes.card1}>
+                            <CardContent className={classes.content1}>
+                                <p style={{color:'#3f414d',fontSize:'3rem'}}>Sign Up</p>                                
+                                    <label htmlFor="name" className={classes.label}>Full Name</label>
                                     <input type="text" name="name" className={classes.form_control} />
                                 <div className={classes.division}>
-                                    <label htmlFor="name" className={classes.label}>Password</label>
+                                    <label htmlFor="name" className={classes.label}>Email</label>
+                                    <input type="text" name="name" className={classes.form_control} />
+                                </div>
+                                <div className={classes.division}>
+                                    <label htmlFor="name" className={classes.label}>Phone</label>
+                                    <input type="text" name="name" className={classes.form_control} />
+                                </div>
+                                <div className={classes.division}>
+                                    <label htmlFor="name" className={classes.label}>OTP</label>
                                     <input type="text" name="name" className={classes.form_control} />
                                 </div>
                                 <div className={classes.division}>
                                     <button className={classes.button}>Sign Up</button>
                                 </div>
                                 <div style={{textAlign:'center'}}>
-                                    <p>Don't have an account ? <Link exact to="/admin-signup"><span style={{color:'#089bab'}}>Sign Up</span></Link></p>
+                                    <p>Already a member ? <Link exact to="/consumer-login"><span style={{color:'#089bab'}}>Sign In</span></Link></p>
                                 </div>
                             </CardContent>
-                </Card>
-            </Container>
-        </>
+                            </Card>
+                        </Container>
     )
 }

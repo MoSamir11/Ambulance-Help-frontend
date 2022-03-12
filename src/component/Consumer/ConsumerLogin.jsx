@@ -1,7 +1,8 @@
 import { Card,CardContent,Box,Typography,TextField,Button,Container,Grid,makeStyles } from "@material-ui/core";
+import Carousel from 'react-elastic-carousel';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 
-export const AdminLogin = () =>{
+export const ConsumerLogin = () =>{
     const useStyles = makeStyles((theme) => ({
         img:{
             width:'30vw',
@@ -17,7 +18,7 @@ export const AdminLogin = () =>{
             padding: theme.spacing(2)
         },
         container1:{
-            padding:'15% 15% 5% 15% ',
+            padding:'22% 15% 5% 15% ',
             [theme.breakpoints.down("sm")]:{
                 padding:'0 3% 3% 5% ',
             }
@@ -56,27 +57,30 @@ export const AdminLogin = () =>{
         }
       }));
       const classes = useStyles();
+      const items= [
+          {id: 1, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},
+          {id: 2, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},
+          {id: 3, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},
+        ]
     return(
-        <>
-            <Container className={classes.container1}>
-                <Card className={classes.card1}>
-                <CardContent className={classes.content1}>
+        <Container className={classes.container1}>
+                            <Card className={classes.card1}>
+                            <CardContent className={classes.content1}>
                                 <p style={{color:'#3f414d',fontSize:'3rem'}}>Sign In</p>                                
-                                    <label htmlFor="name" className={classes.label}>Email</label>
+                                    <label htmlFor="name" className={classes.label}>Phone</label>
                                     <input type="text" name="name" className={classes.form_control} />
                                 <div className={classes.division}>
-                                    <label htmlFor="name" className={classes.label}>Password</label>
+                                    <label htmlFor="name" className={classes.label}>OTP</label>
                                     <input type="text" name="name" className={classes.form_control} />
                                 </div>
                                 <div className={classes.division}>
                                     <button className={classes.button}>Sign Up</button>
                                 </div>
                                 <div style={{textAlign:'center'}}>
-                                    <p>Don't have an account ? <Link exact to="/admin-signup"><span style={{color:'#089bab'}}>Sign Up</span></Link></p>
+                                    <p>Don't have an account ? <Link exact to="/consumer-signup"><span style={{color:'#089bab'}}>Sign Up</span></Link></p>
                                 </div>
                             </CardContent>
-                </Card>
-            </Container>
-        </>
+                            </Card>
+                        </Container>
     )
 }
