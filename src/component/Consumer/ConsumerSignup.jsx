@@ -1,65 +1,11 @@
 import { Card,CardContent,Box,Typography,TextField,Button,Container,Grid,makeStyles } from "@material-ui/core";
 import Carousel from 'react-elastic-carousel';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import styles from '../Admin/Styles.styles';
 
 export const ConsumerSignup = () =>{
-    const useStyles = makeStyles((theme) => ({
-        img:{
-            width:'30vw',
-            height:'70vh',
-            // borderRadius:'20px',
-            borderRadius:'20px',
-            [theme.breakpoints.down("sm")]:{
-                width:'60vw',
-                height:'30vh',
-            }
-        },
-        form: {
-            padding: theme.spacing(2)
-        },
-        item: {
-            marginBottom: theme.spacing(2)
-        },
-        container1:{
-            padding:'10% 10% 5% 10% ',
-            [theme.breakpoints.down("sm")]:{
-                padding:'0 3% 3% 5% ',
-            }
-        },
-        card1:{
-            borderRadius:'20px',
-        },
-        form_control :{
-            height: '2.5rem',
-            width:'95%',
-            lineHeight: '45px',
-            background: 'transparent',
-            border: '1px solid #d7dbda',
-            fontSize: '14px',
-            color: '#a09e9e',
-            borderRadius: '10px',
-            paddingLeft:'20px'
-        },
-        label:{
-            color: '#3f414d',
-            fontWeight:'normal',
-            padding:'3% 0 2% 3%'
-        },
-        division:{
-            paddingTop: theme.spacing(3),
-        },
-        button:{
-            display:'block',
-            width:'100%',
-            height:'2rem',
-            backgroundColor:'#089bab',
-            border:'none',
-            borderRadius:'10px',
-            color:'#ffffff',
-            fontSize:'1rem'
-        }
-      }));
-      const classes = useStyles();
+    const classes = styles();
+    const {img,form,item,container1,card1,form_control,label,division,button} = classes;
       const items= [
           {id: 1, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},
           {id: 2, src: 'https://templates.iqonic.design/xray/html/images/login/2.png'},

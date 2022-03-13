@@ -7,7 +7,7 @@ const useStyle = makeStyles((theme) => ({
         paddingTop: theme.spacing(10),
         height: "100vh",
         color: 'white',
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: '#089bab',
         [theme.breakpoints.up("sm")]: {
             backgroundColor: "white",
             color: '#555',

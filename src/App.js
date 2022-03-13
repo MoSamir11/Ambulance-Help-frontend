@@ -14,7 +14,7 @@ import { ConsumerTemplate } from "./component/Consumer/ConsumerTemplate";
 import { Dashboard } from "./component/Dashboard/Dashboard";
 import { AdminTemplate } from "./component/Admin/AdminTemplate";
 import { Navbar1 } from "./component/Landing/Navbar";
-import { ResponsiveDrawer } from "./Drawer/Drawer";
+import { Landing } from "./component/Landing/Landing";
 function App() {
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -34,13 +34,13 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/" component={Navbar1} />
+          <Route exact path="/" component={Landing} />
           <Route exact path="/second" component={Dashboard} />
           <Route exact path="/consumer-signup" component={ConsumerTemplate} />
           <Route exact path="/consumer-login" component={ConsumerTemplate} />
           <Route exact path="/admin-login" component={AdminTemplate} />
           <Route exact path="/admin-signup" component={AdminTemplate} />
-          <Route exact path="/drawer" component={ResponsiveDrawer} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     </div>
