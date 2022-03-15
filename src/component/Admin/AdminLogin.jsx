@@ -7,7 +7,7 @@ export const AdminLogin = () =>{
     const {img,form,item,card1,form_control,label,division,button} = classes;
     const useStyles = makeStyles((theme) => ({
         container1: {
-            padding: "15% 15% 15% 15% ",
+            padding: "20% 15% 15% 15% ",
             [theme.breakpoints.down("sm")]: {
               padding: "0 3% 3% 5% ",
             },

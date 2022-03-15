@@ -38,9 +38,6 @@ export const Navbar1 = () => {
 
     const data = [
         {
-          text: "Link",
-        },
-        {
           text: <Cancel />,
         },
         {

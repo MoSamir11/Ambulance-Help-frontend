@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const styles = makeStyles((theme) => ({
   img: {
-    width: "30vw",
+    // width: "100vh",
     height: "70vh",
     // borderRadius:'20px',
     borderRadius: "20px",
@@ -35,15 +35,15 @@ const styles = makeStyles((theme) => ({
     fontSize: "14px",
     color: "#a09e9e",
     borderRadius: "10px",
-    paddingLeft: "20px",
+    paddingLeft: "0 0 20px 0",
   },
   label: {
     color: "#3f414d",
     fontWeight: "normal",
-    padding: "3% 0 2% 3%",
+    padding: "2% 0 1% 3%",
   },
   division: {
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(1),
   },
   button: {
     display: "block",
@@ -107,11 +107,12 @@ const styles = makeStyles((theme) => ({
     fontSize: "14px",
     color: "#a09e9e",
     borderRadius: "10px",
+    paddingLeft: "15px",
   },
   label: {
     color: "#3f414d",
     fontWeight: "normal",
-    padding: "3%",
+    padding: "1% 0 1% 3%",
   },
   division: {
     paddingTop: theme.spacing(3),
