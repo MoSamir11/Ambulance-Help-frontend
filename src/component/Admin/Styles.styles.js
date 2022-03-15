@@ -45,6 +45,9 @@ const styles = makeStyles((theme) => ({
   division: {
     paddingTop: theme.spacing(1),
   },
+  division1: {
+    paddingTop: theme.spacing(2),
+  },
   button: {
     display: "block",
     width: "100%",

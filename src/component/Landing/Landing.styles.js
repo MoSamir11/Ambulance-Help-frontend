@@ -7,6 +7,9 @@ const style = makeStyles((theme) => ({
   },
   Appbar: {
     backgroundColor: "#089bab",
+    width: "100vw",
+    height: "55px",
+    // paddingBottom: 0,
   },
   btn: {
     padding: "0.4rem",

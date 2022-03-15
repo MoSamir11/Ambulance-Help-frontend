@@ -15,6 +15,7 @@ import { Dashboard } from "./component/Dashboard/Dashboard";
 import { AdminTemplate } from "./component/Admin/AdminTemplate";
 import { Navbar1 } from "./component/Landing/Navbar";
 import { Landing } from "./component/Landing/Landing";
+import { AdminDashboard } from "./component/Admin/AdminDashboard/AdminDashboard";
 function App() {
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -41,6 +42,9 @@ function App() {
           <Route exact path="/admin-login" component={AdminTemplate} />
           <Route exact path="/admin-signup" component={AdminTemplate} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/admin-dashboard/add-ambulance" component={AdminDashboard}/>
+          <Route exact path="/admin-dashboard/add-staff" component={AdminDashboard} />
+          <Route exact path="/admin-dashboard" component={AdminDashboard} />
         </Switch>
       </Router>
     </div>
