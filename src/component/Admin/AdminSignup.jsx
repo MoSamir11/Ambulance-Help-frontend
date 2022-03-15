@@ -47,15 +47,17 @@ export const AdminSignup = () =>{
                     address:inputField.address,
                     pin:inputField.pin,
                     password:inputField.password,
-                    latitude:latitude,
-                    longitude:longitude
+                    latitude:position.coords.latitude,
+                    longitude:position.coords.longitude
                   }
                   console.log("57-->",candidateData);
                   axios.post('http://localhost:5000/admin-signup',candidateData)
                   .then((res)=>{
                       if(res){
-                          console.log(res)
-                          alert('Successgully registered')
+                          console.log(res.data)
+                          alert(res.data.message)
+                      }else{
+                            alert(res.data.message)
                       }
                   })
             })
