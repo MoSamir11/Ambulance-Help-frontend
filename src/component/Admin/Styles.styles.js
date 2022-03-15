@@ -111,6 +111,7 @@ const styles = makeStyles((theme) => ({
     color: "#a09e9e",
     borderRadius: "10px",
     paddingLeft: "15px",
+    fontSize:'15px'
   },
   label: {
     color: "#3f414d",
