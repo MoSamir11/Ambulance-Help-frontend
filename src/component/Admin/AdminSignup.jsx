@@ -29,7 +29,12 @@ export const AdminSignup = () =>{
               [name]:value
           }))
       }
-      const submit = () =>{
+    const submit = () =>{
+        if(inputField.hospitalName==''|| inputField.email==''|| inputField.phone==''|| inputField.address=='' ||inputField.pin==''||inputField.password=='')
+        {
+            alert("All the fields need to be filled")
+            return;
+        }
         let location = null;
         var latitude = null;
         var longitude = null;
@@ -53,8 +58,8 @@ export const AdminSignup = () =>{
                   console.log("57-->",candidateData);
                   axios.post('http://localhost:5000/admin-signup',candidateData)
                   .then((res)=>{
-                      if(res){
-                          console.log(res.data)
+                      if(res.data.isSuccess){
+                          console.log("57-->",res.data)
                           alert(res.data.message)
                       }else{
                             alert(res.data.message)

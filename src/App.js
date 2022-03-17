@@ -42,6 +42,7 @@ function App() {
           <Route exact path="/admin-login" component={AdminTemplate} />
           <Route exact path="/admin-signup" component={AdminTemplate} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/admin-dashboard" component={AdminDashboard}/>
           <Route exact path="/admin-dashboard/add-ambulance" component={AdminDashboard}/>
           <Route exact path="/admin-dashboard/add-staff" component={AdminDashboard} />
           <Route exact path="/admin-dashboard" component={AdminDashboard} />
