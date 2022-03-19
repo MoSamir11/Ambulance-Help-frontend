@@ -68,7 +68,6 @@ export const ConsumerSignup = () =>{
                   alert(res.data.message)
             }
         })
-       
     }
     return(
         <Container className={classes.container1}>

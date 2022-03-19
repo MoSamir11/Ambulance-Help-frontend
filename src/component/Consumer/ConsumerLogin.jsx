@@ -74,7 +74,8 @@ export const ConsumerLogin = () =>{
             if(res.data.isSuccess){
                 console.log("75-->",res.data)
                 alert(res.data.message)
-                history.push('/')
+                history.replace('/admin-dashboard/add-ambulance')
+
             }else{
                   alert(res.data.message)
             }

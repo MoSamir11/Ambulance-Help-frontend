@@ -36,6 +36,10 @@ const styles = makeStyles((theme) => ({
     color: "#a09e9e",
     borderRadius: "10px",
     paddingLeft: "0 0 20px 0",
+    "&:hover":{
+      backgroundColor: "#0069d9",
+      borderColor: "#0062cc"
+    },
   },
   label: {
     color: "#3f414d",

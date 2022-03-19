@@ -4,7 +4,10 @@ import styles from '../Styles.styles.js';
 const style = makeStyles((theme) => ({
     container1: {
       width:'60%',
-      paddingTop: theme.spacing(10)
+      paddingTop: theme.spacing(10),
+      [theme.breakpoints.down("sm")]: {
+        width:'100%',
+      },
     },
     division:{
         paddingTop: theme.spacing(2)
