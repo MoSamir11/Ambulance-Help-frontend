@@ -20,6 +20,7 @@ import { AdminDashboard } from "./component/Admin/AdminDashboard/AdminDashboard"
 import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
 import {PrivateRoute} from './component/PrivateRoute/PrivateRoute';
+import { ConsumerDashboard } from "./component/Consumer/ConsumerDashboard/ConsumerDashboard";
 function App() {
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -59,6 +60,7 @@ function App() {
           <Route exact path="/admin-dashboard/add-ambulance" component={AdminDashboard}/>
           <PrivateRoute exact path="/admin-dashboard/add-staff"><AdminDashboard /></PrivateRoute>
           <Route exact path="/admin-dashboard" component={AdminDashboard} />
+          <Route exact path="/consumer-dashboard" component={ConsumerDashboard} />
         </Switch>
       </Router>
     </div>

@@ -2,13 +2,13 @@ import { alpha, AppBar,InputBase, Drawer,List,Divider,Button,Listener,ListItemTe
 import { Mail, Search, Notifications, Cancel, MenuOutlined } from '@material-ui/icons';
 import { FaAmbulance ,FaListUl} from 'react-icons/fa';
 import { BiListPlus } from 'react-icons/bi';
-import { AiOutlineUserAdd,AiOutlineLogout } from 'react-icons/ai';
+import { AiOutlineUserAdd,AiOutlineLogout,AiOutlineHome } from 'react-icons/ai';
 
 import { SearchOff } from '@mui/icons-material';
 import { useState } from 'react';
 import {BrowserRouter as Router,Switch,Route,Link, useHistory, Redirect} from "react-router-dom";
 import style from '../../Landing/Landing.styles';
-export const AdminNavbar = () => {
+export const ConsumerNavbar = () => {
     const [open, setOpen] = useState(false)
     // const classes = useStyles({
     //     open
@@ -17,19 +17,19 @@ export const AdminNavbar = () => {
     const history = useHistory()
     const data = [
         {
-          text: <BiListPlus size={35}/>,
+          text: 'Home',
           to:'/admin-dashboard/add-ambulance'
         },
         {
-          text: <FaAmbulance size={35} />,
+          text: 'AboutUs',
           to:'/admin-dashboard/all-ambulance'
         },
         {
-          text: <AiOutlineUserAdd size={35}/>,
+          text: 'Blog',
           to:'/admin-dashboard/add-staff'
         },
         {
-          text: <FaListUl size={35}/>,
+          text: <AiOutlineLogout size={30}/>,
           to:'/admin-dashboard/all-staff'
         }
     ];
@@ -53,15 +53,12 @@ export const AdminNavbar = () => {
                         {
                             data.map((e)=>{
                             return(
-                                <li className="nav-item ml-5 mr-5 pl-4 pr-5">
+                                <li className="nav-item ml-5 mr-5 pt-3 pl-4 pr-5">
                                     <Link exact to={e.to} className="nav-link text-light">{e.text}</Link>
                                 </li>
                                 )
                             })
                         }
-                        <li className="nav-item ml-5 mr-5 mt-2 pl-4 pr-5" onClick={logout}>
-                            <AiOutlineLogout size={30}/>
-                        </li>
                     </ul>
                     </nav>
                     </div>
