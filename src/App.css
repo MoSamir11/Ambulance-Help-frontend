@@ -37,3 +37,4 @@
   }
 } */
 /* #089bab */
+/* {items.map(item=><img src={item.src} className={classes.img} alt="" />)} */

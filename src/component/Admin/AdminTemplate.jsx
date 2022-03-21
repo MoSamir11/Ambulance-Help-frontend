@@ -7,7 +7,8 @@ import {AdminSignup} from './AdminSignup';
 import { AdminLogin } from "./AdminLogin";
 import styles from './Styles.styles.js';
 import jwt_decode from "jwt-decode";
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
 export const AdminTemplate = () =>{
     const classes = styles();
     const {container,card,content,img,form,item,container1,card1,form_control,label,division,button} = classes;
@@ -27,6 +28,13 @@ export const AdminTemplate = () =>{
             setOtp(true);
             setText("Validate OTP")
         }
+        const settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1
+          };
     return(
         <>
         <Container className={classes.container}>
