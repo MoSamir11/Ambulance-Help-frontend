@@ -25,6 +25,12 @@ export const AddStaff = (props) =>{
       const {container1,card1,form_control,label,division1,button} = classes;
       const [spinner, setSpinner] = useState(false);
       const [hospital,sethospital] = useState('');
+
+      const lItem = localStorage.getItem("Admin");
+      if(lItem)
+        console.log("True")
+      else
+        console.log("False")
     useEffect(()=>{
         setSpinner(TramOutlined)
         const data = localStorage.getItem("Admin");

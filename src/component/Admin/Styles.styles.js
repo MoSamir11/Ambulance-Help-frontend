@@ -36,9 +36,8 @@ const styles = makeStyles((theme) => ({
     color: "#a09e9e",
     borderRadius: "10px",
     paddingLeft: "0 0 20px 0",
-    "&:hover":{
-      backgroundColor: "#0069d9",
-      borderColor: "#0062cc"
+    "&:focus":{
+      outline:"none",
     },
   },
   label: {
@@ -115,7 +114,11 @@ const styles = makeStyles((theme) => ({
     color: "#a09e9e",
     borderRadius: "10px",
     paddingLeft: "15px",
-    fontSize:'15px'
+    fontSize:'15px',
+    "&:focus":{
+      border:"1px solid #3f51b5",
+      outline:'none'
+    },
   },
   label: {
     color: "#3f414d",
