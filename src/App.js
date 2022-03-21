@@ -16,6 +16,9 @@ import { AdminTemplate } from "./component/Admin/AdminTemplate";
 import { Navbar1 } from "./component/Landing/Navbar";
 import { Landing } from "./component/Landing/Landing";
 import { AdminDashboard } from "./component/Admin/AdminDashboard/AdminDashboard";
+
+import jwt_decode from "jwt-decode";
+import { useEffect } from "react";
 function App() {
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -31,6 +34,15 @@ function App() {
     },
   }));
   const classes = useStyles();
+  // const [hospital,sethospital] = useState('');
+
+    // useEffect(()=>{
+    //     const data = localStorage.getItem("Admin");
+    //     console.log("72-->",data)
+    //     const decoded = jwt_decode(data);
+    //     console.log("74-->",decoded.data.hospitalName)
+    //     sethospital(decoded.data.hospitalName)
+    // },[])
   return (
     <div>
       <Router>

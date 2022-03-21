@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import styles from '../Styles.styles.js';
+import jwt_decode from "jwt-decode";
+
 const style = makeStyles((theme) => ({
     container1: {
       width:'60%',
@@ -16,8 +18,11 @@ const style = makeStyles((theme) => ({
         paddingTop: theme.spacing(2)
     }
 }))
-export const AddAmbulance = () =>{
+export const AddAmbulance = (props) =>{
+    console.log("22-->",props)
+
       const [ambulance,setAmbulance] = useState([]);
+      const [hospital,sethospital] = useState();
       const classes = styles();
       const myClass = style();
       const {container1,card1,form_control,label,division1,button,box} = classes;
@@ -49,7 +54,7 @@ export const AddAmbulance = () =>{
             return;
         }
         const userData={
-            hospitalName:inputField.hospitalName,
+            hospitalName:hospital,
             driverName:inputField.driverName,
             ambulanceNumber:inputField.ambulanceNumber,
             driverContact:inputField.contact    
@@ -65,28 +70,25 @@ export const AddAmbulance = () =>{
             }
         })
     }
+    useEffect(()=>{
+        const data = localStorage.getItem("Admin");
+        console.log("72-->",data)
+        const decoded = jwt_decode(data);
+        console.log("74-->",decoded.data.hospitalName)
+        sethospital(decoded.data.hospitalName)
+    },[])
     return(
         <>
         <Container className={myClass.container1}>
             <Card className={classes.card1}>
                 <CardContent className={classes.content1}>
-                    <p style={{color:'#3f414d',fontSize:'3rem'}}>Sign Up</p>   
+                    <p style={{color:'#3f414d',fontSize:'2.5rem',textAlign:'center'}}>Add Ambulance</p>   
                                                 
                     <label htmlFor="name" className={classes.label}>Hospital Name</label>
-                    <select type="text" name="hospitalName" className={classes.form_control} placeholder="Enter hospital name" 
-                        onChange={inputHandler} value={inputField.hospitalName}>
-                            <option selected disabled>Select your hospital</option>
-                            {
-                                ambulance.map((e,index)=>{
-                                    return(
-                                        <option key={index}>{e.hospitalName}</option>
-                                    )
-                                 })
-                             }
-                        </select>
+                    <input type="text" name="hospitalName" className={classes.form_control} placeholder="Enter hospital name" value={hospital}  disabled />
                             <div className={classes.division1}>
                                 <label htmlFor="drivername" className={classes.label}>Driver Name</label>
-                                <input type="text" name="driverName" className={classes.form_control} onChange={inputHandler} value={inputField.driverName}/>
+                                <input type="text" name="driverName" className={classes.form_control} onChange={inputHandler} value={inputField.driverName} />
                             </div>
                        
                             <div className={classes.division1}>

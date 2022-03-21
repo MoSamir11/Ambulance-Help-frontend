@@ -30,6 +30,7 @@ export const AdminNavbar = () => {
         },
         {
           text: <FaListUl size={35}/>,
+          to:'/admin-dashboard/all-staff'
         }
     ];
     return (

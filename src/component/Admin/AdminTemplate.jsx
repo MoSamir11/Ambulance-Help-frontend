@@ -1,17 +1,20 @@
 import { Card,CardContent,Container,Grid,makeStyles } from "@material-ui/core";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Carousel from 'react-elastic-carousel';
 import { Slide } from 'react-slideshow-image';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import {AdminSignup} from './AdminSignup';
 import { AdminLogin } from "./AdminLogin";
 import styles from './Styles.styles.js';
+import jwt_decode from "jwt-decode";
 
 export const AdminTemplate = () =>{
     const classes = styles();
     const {container,card,content,img,form,item,container1,card1,form_control,label,division,button} = classes;
-   
+    const [hospital,sethospital] = useState('');
+
     //   const classes = useStyles();
+    
       const items= [
           {id: 1, src: 'https://webartinfo.com/themeforest/medicil/img/banner.png'},
           {id: 2, src: 'https://medservice.vercel.app/images/image-03.png'},

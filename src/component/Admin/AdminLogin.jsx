@@ -1,13 +1,14 @@
 import { Card,CardContent,Box,Typography,TextField,Button,Container,Grid,makeStyles } from "@material-ui/core";
-import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import {BrowserRouter as Router,Switch,Route,Link,useHistory} from "react-router-dom";
 import { useState,useEffect } from "react";
 import styles from './Styles.styles.js';
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 export const AdminLogin = () =>{
     const classes = styles();
     const {img,form,item,card1,form_control,label,division,button} = classes;
-
+    const history = useHistory();
     const useStyles = makeStyles((theme) => ({
         container1: {
             padding: "20% 15% 15% 15% ",
@@ -37,7 +38,12 @@ export const AdminLogin = () =>{
         .then((res)=>{
             if(res.data){
                 console.log("57-->",res.data.token)
+                localStorage.setItem("Admin",res.data.token)
+                const decoded = jwt_decode(res.data.token);
                 alert(res.data.message)
+                history.push("/admin-dashboard/add-ambulance");
+                
+                console.log(decoded.data)
               }else{
                 alert(res.data.message)
               }
@@ -58,7 +64,7 @@ export const AdminLogin = () =>{
                             <input type="password" name="password" className={classes.form_control} onChange={inputHandler} value={inputField.name}/>
                         </div>
                         <div className={classes.division}>
-                            <button className={classes.button} onClick={submit}>Sign Up</button>
+                            <button className={classes.button} onClick={submit}>Sign In</button>
                         </div>
                         <div style={{textAlign:'center'}}>
                             <p>Don't have an account ? <Link exact to="/admin-signup"><span style={{color:'#089bab'}}>Sign Up</span></Link></p>
