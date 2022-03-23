@@ -18,11 +18,11 @@ export const ConsumerNavbar = () => {
     const data = [
         {
           text: 'Home',
-          to:'/admin-dashboard/add-ambulance'
+          to:'/comsumer-dashboard/home'
         },
         {
           text: 'AboutUs',
-          to:'/admin-dashboard/all-ambulance'
+          to:'/comsumer-dashboard/aboutus'
         },
         {
           text: 'Blog',

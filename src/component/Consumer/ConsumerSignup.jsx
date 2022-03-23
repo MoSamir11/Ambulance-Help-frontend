@@ -29,7 +29,6 @@ export const ConsumerSignup = () =>{
         }))
     }
     const viewFunction=()=>{
-          setView(true)
           const userData={
             name:inputField.name,
             email:inputField.email,
@@ -43,6 +42,7 @@ export const ConsumerSignup = () =>{
                 alert(res.data.message)
             }else{
                   alert(res.data.message)
+                  setView(true)
             }
         })
       }

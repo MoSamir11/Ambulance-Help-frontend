@@ -1,28 +1,21 @@
 import { ConsumerNavbar } from "./ConsumerNavbar"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 import { useState,useEffect } from "react";
+import { Home } from "./Home";
+import { AboutUs } from "./AboutUs";
 
 export const ConsumerDashboard = () =>{
-    const [hospital,sethospital] = useState('');
-
-    // useEffect(()=>{
-    //     const data = localStorage.getItem("Admin");
-    //     console.log("72-->",data)
-    //     const decoded = jwt_decode(data);
-    //     console.log("74-->",decoded.data.hospitalName)
-    //     sethospital(decoded.data.hospitalName)
-    // },[])
+    // const [hospital,sethospital] = useState('');
     return(
         <>
             <Router>
                 <ConsumerNavbar />
-                {/* <Switch>
-                    <Route exact path="/admin-dashboard/add-ambulance" component={AddAmbulance}/>
-                    <Route exact path="/admin-dashboard/add-staff" component={AddStaff}/>
-                    <Route exact path="/admin-dashboard/all-ambulance" component={AllAmbulance}/>
-                    <Route exact path="/admin-dashboard/all-staff" component={AllStaff}/>
-                </Switch> */}
+                <Switch>
+                    <Route exact path="/comsumer-dashboard/home" component={Home}/>
+                    <Route exact path="/comsumer-dashboard/aboutus" component={AboutUs}/>
+                    {/* <Route exact path="/admin-dashboard/all-ambulance" component={AllAmbulance}/>
+                    <Route exact path="/admin-dashboard/all-staff" component={AllStaff}/> */}
+                </Switch>
             </Router>
         </>
     )

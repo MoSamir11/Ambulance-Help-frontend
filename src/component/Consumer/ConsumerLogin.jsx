@@ -4,6 +4,8 @@ import { useState } from "react";
 import Carousel from 'react-elastic-carousel';
 import {BrowserRouter as Router,Switch,Route,Link,useHistory } from "react-router-dom";
 import styles from '../Admin/Styles.styles';
+import jwt_decode from "jwt-decode";
+
 
 export const ConsumerLogin = () =>{
     const classes = styles();
@@ -74,7 +76,9 @@ export const ConsumerLogin = () =>{
             if(res.data.isSuccess){
                 console.log("75-->",res.data)
                 alert(res.data.message)
-                history.replace('/admin-dashboard/add-ambulance')
+                localStorage.setItem("consumer",res.data.token)
+                const decoded = jwt_decode(res.data.token);
+                history.replace('/consumer-dashboard')
 
             }else{
                   alert(res.data.message)

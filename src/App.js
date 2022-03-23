@@ -61,6 +61,8 @@ function App() {
           <PrivateRoute exact path="/admin-dashboard/add-staff"><AdminDashboard /></PrivateRoute>
           <Route exact path="/admin-dashboard" component={AdminDashboard} />
           <Route exact path="/consumer-dashboard" component={ConsumerDashboard} />
+          <Route exact path="/consumer-dashboard/home" component={ConsumerDashboard} />
+          <Route exact path="/comsumer-dashboard/aboutus" component={ConsumerDashboard} />
         </Switch>
       </Router>
     </div>

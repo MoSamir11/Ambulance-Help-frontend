@@ -38,3 +38,13 @@
 } */
 /* #089bab */
 /* {items.map(item=><img src={item.src} className={classes.img} alt="" />)} */
+.btn {
+  padding: "0.4rem";
+  font-size: 15;
+  border-radius: 10;
+  background-color: "#089bab";
+  border-width: 2;
+  border: "1px solid #017e7e";
+  outline: 2;
+  color: "#ffffff";
+}
