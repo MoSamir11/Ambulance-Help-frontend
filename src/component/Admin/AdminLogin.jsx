@@ -4,6 +4,7 @@ import { useState,useEffect } from "react";
 import styles from './Styles.styles.js';
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import Cookies from 'js-cookie'
 
 export const AdminLogin = () =>{
     const classes = styles();
@@ -38,7 +39,7 @@ export const AdminLogin = () =>{
         .then((res)=>{
             if(res.data){
                 console.log("57-->",res.data.token)
-                localStorage.setItem("Admin",res.data.token)
+                Cookies.set("Admin",res.data.token)
                 const decoded = jwt_decode(res.data.token);
                 alert(res.data.message)
                 history.push("/admin-dashboard/add-ambulance");
@@ -47,8 +48,8 @@ export const AdminLogin = () =>{
               }else{
                 alert(res.data.message)
               }
-    }
-    )
+            }
+        )
     }
     const myClass = useStyles();
     return(

@@ -4,6 +4,8 @@ import jwt_decode from "jwt-decode";
 import { useEffect } from 'react';
 import { useState } from 'react';
 // import styles from '../../Admin/Styles.styles';
+import Cookies from 'js-cookie'
+
 import '../../.././App.css'
 const style = makeStyles((theme) => ({
     container1: {
@@ -35,7 +37,7 @@ export const Home = () =>{
 
     const [name,setName] = useState('');
     useEffect(()=>{
-        const token = localStorage.getItem("consumer");
+        const token = Cookies.get("consumer");
         const decode = jwt_decode(token);
         console.log("24-->",decode.user.name)
         setName(decode.user.name);

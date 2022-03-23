@@ -6,17 +6,10 @@ import { AllAmbulance } from "./AllAmbulance";
 import jwt_decode from "jwt-decode";
 import { useState,useEffect } from "react";
 import { AllStaff } from "./AllStaff";
+import Cookies from 'js-cookie'
 
 export const AdminDashboard = () =>{
     const [hospital,sethospital] = useState('');
-
-    useEffect(()=>{
-        const data = localStorage.getItem("Admin");
-        console.log("72-->",data)
-        const decoded = jwt_decode(data);
-        console.log("74-->",decoded.data.hospitalName)
-        sethospital(decoded.data.hospitalName)
-    },[])
     return(
         <>
             <Router>

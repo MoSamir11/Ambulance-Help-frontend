@@ -5,6 +5,7 @@ import { useState } from "react";
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import styles from '../Styles.styles.js';
 import jwt_decode from "jwt-decode";
+import Cookies from 'js-cookie'
 
 const style = makeStyles((theme) => ({
     container1: {
@@ -26,12 +27,7 @@ export const AddAmbulance = (props) =>{
       const classes = styles();
       const myClass = style();
       const {container1,card1,form_control,label,division1,button,box} = classes;
-      useEffect(()=>{
-        axios.get('http://localhost:5000/all-hospital')
-      .then((res)=>{
-          setAmbulance(res.data.data)
-      })
-      },[])
+     
     const [inputField,setInputField] = useState({
         hospitalName:'',
         driverName:'',
@@ -45,7 +41,6 @@ export const AddAmbulance = (props) =>{
             [name]:value
         }))
     }
-    console.log("40-->",ambulance)
     console.log("41-->",inputField)
     const submit = () =>{
         if(inputField.name==''|| inputField.email==''|| inputField.phone==''|| inputField.otp=='')
@@ -71,7 +66,7 @@ export const AddAmbulance = (props) =>{
         })
     }
     useEffect(()=>{
-        const data = localStorage.getItem("Admin");
+        const data = Cookies.get("Admin");
         console.log("72-->",data)
         const decoded = jwt_decode(data);
         console.log("74-->",decoded.data.hospitalName)

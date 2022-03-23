@@ -30,7 +30,7 @@ export const AdminSignup = () =>{
           }))
       }
     const submit = () =>{
-        if(inputField.hospitalName==''|| inputField.email==''|| inputField.phone==''|| inputField.address=='' ||inputField.pin==''||inputField.password=='')
+        if(inputField.hospitalName==''|| inputField.email==''|| inputField.phone==''|| inputField.address=='' ||inputField.pin==''||inputField.password==''|| inputField.latitude || inputField.longitude)
         {
             alert("All the fields need to be filled")
             return;
@@ -52,19 +52,19 @@ export const AdminSignup = () =>{
                     address:inputField.address,
                     pin:inputField.pin,
                     password:inputField.password,
-                    latitude:position.coords.latitude,
-                    longitude:position.coords.longitude
+                    latitude:latitude,
+                    longitude:longitude
                   }
                   console.log("57-->",candidateData);
-                  axios.post('http://localhost:5000/admin-signup',candidateData)
-                  .then((res)=>{
-                      if(res.data.isSuccess){
-                          console.log("57-->",res.data)
-                          alert(res.data.message)
-                      }else{
-                            alert(res.data.message)
-                      }
-                  })
+                //   axios.post('http://localhost:5000/admin-signup',candidateData)
+                //   .then((res)=>{
+                //       if(res.data.isSuccess){
+                //           console.log("57-->",res.data)
+                //           alert(res.data.message)
+                //       }else{
+                //             alert(res.data.message)
+                //       }
+                //   })
             })
         }
     }

@@ -4,6 +4,7 @@ import { useEffect,useState } from "react";
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import styles from '../Styles.styles.js';
 import jwt_decode from "jwt-decode";
+import Cookies from 'js-cookie'
 
 import { BounceLoader } from "react-spinners";
 import { TramOutlined } from "@material-ui/icons";
@@ -26,14 +27,14 @@ export const AddStaff = (props) =>{
       const [spinner, setSpinner] = useState(false);
       const [hospital,sethospital] = useState('');
 
-      const lItem = localStorage.getItem("Admin");
+      const lItem = Cookies.get("Admin");
       if(lItem)
         console.log("True")
       else
         console.log("False")
     useEffect(()=>{
         setSpinner(TramOutlined)
-        const data = localStorage.getItem("Admin");
+        const data = Cookies.get("Admin");
         console.log("36-->",data)
         const decoded = jwt_decode(data);
         console.log("38-->",decoded.data.hospitalName)

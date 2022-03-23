@@ -8,6 +8,7 @@ import { SearchOff } from '@mui/icons-material';
 import { useState } from 'react';
 import {BrowserRouter as Router,Switch,Route,Link, useHistory, Redirect} from "react-router-dom";
 import style from '../../Landing/Landing.styles';
+import Cookies from 'js-cookie';
 export const ConsumerNavbar = () => {
     const [open, setOpen] = useState(false)
     // const classes = useStyles({
@@ -28,16 +29,17 @@ export const ConsumerNavbar = () => {
           text: 'Blog',
           to:'/admin-dashboard/add-staff'
         },
-        {
-          text: <AiOutlineLogout size={30}/>,
-          to:'/admin-dashboard/all-staff'
-        }
+        // {
+        //   text: <AiOutlineLogout size={30}/>,
+        //   to:'/admin-dashboard/all-staff',
+        //   click:''
+        // }
     ];
-    function logout(e){
-        const lData = localStorage.getItem("Admin")
+    function logout(){
+        const lData = Cookies.get("consumer")
         if(lData){
-            localStorage.removeItem('Admin');
-            history.push("/");
+            Cookies.remove('consumer');
+            history.push("/consumer-login");
         }
     }
     return (
@@ -53,12 +55,15 @@ export const ConsumerNavbar = () => {
                         {
                             data.map((e)=>{
                             return(
-                                <li className="nav-item ml-5 mr-5 pt-3 pl-4 pr-5">
+                                <li className="nav-item ml-5 mr-5 pt-2 pl-4 pr-5">
                                     <Link exact to={e.to} className="nav-link text-light">{e.text}</Link>
                                 </li>
                                 )
                             })
                         }
+                        <li className="nav-item ml-5 pl-4 pr-5" style={{paddingTop:3}}>
+                            <p className="nav-link text-light" onClick={logout}><AiOutlineLogout size={30}/></p>
+                        </li>
                     </ul>
                     </nav>
                     </div>

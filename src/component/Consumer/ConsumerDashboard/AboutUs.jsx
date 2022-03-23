@@ -20,7 +20,7 @@ const style = makeStyles((theme) => ({
 
 export const AboutUs = () =>{
     const myClass = style();
-
+    
     // const [name,setName] = useState('');
     // useEffect(()=>{
     //     const token = localStorage.getItem("consumer");

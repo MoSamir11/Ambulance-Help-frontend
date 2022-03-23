@@ -8,6 +8,7 @@ import { useState } from "react";
 import { BounceLoader } from "react-spinners";
 import { TramOutlined } from "@material-ui/icons";
 import { AddStaff } from "./AddStaff.jsx";
+import Cookies from 'js-cookie'
 
 const style = makeStyles((theme) => ({
     container1: {
@@ -40,7 +41,7 @@ export const AllAmbulance = () =>{
     const [spinner, setSpinner] = useState(false)
     useEffect(()=>{
         setSpinner(TramOutlined)
-        const data = localStorage.getItem("Admin");
+        const data = Cookies.get("Admin");
         console.log("36-->",data);
         const decoded = jwt_decode(data);
         console.log("38-->",decoded.data.hospitalName);

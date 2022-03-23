@@ -60,6 +60,9 @@ const styles = makeStyles((theme) => ({
     borderRadius: "10px",
     color: "#ffffff",
     fontSize: "1rem",
+    "&:focus":{
+      outline:'none'
+    },
   },
   // template
   container: {
@@ -137,6 +140,9 @@ const styles = makeStyles((theme) => ({
     borderRadius: "10px",
     color: "#ffffff",
     fontSize: "1rem",
+    "&:focus":{
+      outline:'none'
+    },
   },
   // landing Navbar
   toolbar: {
