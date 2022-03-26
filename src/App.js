@@ -21,6 +21,7 @@ import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
 import {PrivateRoute} from './component/PrivateRoute/PrivateRoute';
 import { ConsumerDashboard } from "./component/Consumer/ConsumerDashboard/ConsumerDashboard";
+// import { Carousel } from "./component/Carousel/carousel";
 function App() {
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -63,6 +64,7 @@ function App() {
           <Route exact path="/consumer-dashboard" component={ConsumerDashboard} />
           <Route exact path="/consumer-dashboard/home" component={ConsumerDashboard} />
           <Route exact path="/comsumer-dashboard/aboutus" component={ConsumerDashboard} />
+          {/* <Route exact path="/carousel" component={Carousel} /> */}
         </Switch>
       </Router>
     </div>
