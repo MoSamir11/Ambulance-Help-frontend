@@ -39,7 +39,15 @@ export const AdminLogin = () =>{
         .then((res)=>{
             if(res.data){
                 console.log("57-->",res.data.token)
-                Cookies.set("Admin",res.data.token)
+                
+                const token = localStorage.getItem("Admin")
+                if(token)
+                {
+                    alert("Already Logged in")
+                    history.push("/admin-dashboard/add-ambulance")
+                }else{
+                    Cookies.set("Admin",res.data.token)
+                }
                 const decoded = jwt_decode(res.data.token);
                 alert(res.data.message)
                 history.push("/admin-dashboard/add-ambulance");

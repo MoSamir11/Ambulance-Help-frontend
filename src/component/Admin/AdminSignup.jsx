@@ -56,15 +56,15 @@ export const AdminSignup = () =>{
                     longitude:longitude
                   }
                   console.log("57-->",candidateData);
-                //   axios.post('http://localhost:5000/admin-signup',candidateData)
-                //   .then((res)=>{
-                //       if(res.data.isSuccess){
-                //           console.log("57-->",res.data)
-                //           alert(res.data.message)
-                //       }else{
-                //             alert(res.data.message)
-                //       }
-                //   })
+                  axios.post('http://localhost:5000/admin-signup',candidateData)
+                  .then((res)=>{
+                      if(res.data.isSuccess){
+                          console.log("57-->",res.data)
+                          alert(res.data.message)
+                      }else{
+                            alert(res.data.message)
+                      }
+                  })
             })
         }
     }
