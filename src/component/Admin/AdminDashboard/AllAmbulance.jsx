@@ -38,13 +38,15 @@ export const AllAmbulance = () =>{
     const myClass = style();
     const {container1,card1,form_control,label,division1,button} = classes;
     const [ambulanceList,setAmbulanceList] = useState([]);
-    const [spinner, setSpinner] = useState(false)
+    const [spinner, setSpinner] = useState(false);
+    const [hospital,setHospital] = useState('');
     useEffect(()=>{
         setSpinner(TramOutlined)
         const data = Cookies.get("Admin");
         console.log("36-->",data);
         const decoded = jwt_decode(data);
         console.log("38-->",decoded.data.hospitalName);
+        setHospital(decoded.data.hospitalName)
         axios.get(`http://localhost:5000/ambulanceList/${decoded.data.hospitalName}`)
         .then((res,err)=>{
             if(res.data.isSuccess)
@@ -61,7 +63,7 @@ export const AllAmbulance = () =>{
     return(
         <>
             <Container className={myClass.container1}>
-                <h1>All Ambulance</h1>
+                <h1>{hospital}</h1>
                 {
                     spinner ? <><div className="text-center" style={{ marginTop: '20%', marginRight: '4%' }}>
                         <BounceLoader size={100} color="#089bab" />

@@ -39,20 +39,25 @@ export const AdminLogin = () =>{
         .then((res)=>{
             if(res.data){
                 console.log("57-->",res.data.token)
-                
-                const token = localStorage.getItem("Admin")
-                if(token)
+                let adminToken = Cookies.get('Admin');
+                let customerToken = Cookies.get('consumer');
+                if(customerToken)
                 {
-                    alert("Already Logged in")
-                    history.push("/admin-dashboard/add-ambulance")
+                    alert("You are already logged in as an Consumer first logout from there");
+                    return;
+                }
+                else if(adminToken)
+                {
+                    alert("Already Logged in please destroy the previous one");
+                    // history.push("/admin-dashboard/add-ambulance")
+                    return;
                 }else{
                     Cookies.set("Admin",res.data.token)
+                    const decoded = jwt_decode(res.data.token);
+                    alert(res.data.message)
+                    history.push("/admin-dashboard/add-ambulance");
+                    console.log(decoded.data)
                 }
-                const decoded = jwt_decode(res.data.token);
-                alert(res.data.message)
-                history.push("/admin-dashboard/add-ambulance");
-                
-                console.log(decoded.data)
               }else{
                 alert(res.data.message)
               }

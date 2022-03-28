@@ -52,15 +52,15 @@ export const ConsumerNavbar = () => {
                 <div className={classes.item}>
                 <nav className="navbar navbar-expand-sm navbar-light">
                     <ul className="navbar-nav">
-                        {
-                            data.map((e)=>{
-                            return(
                                 <li className="nav-item ml-5 mr-5 pt-2 pl-4 pr-5">
-                                    <Link exact to={e.to} className="nav-link text-light">{e.text}</Link>
+                                    <Link exact to='/comsumer-dashboard/home' className="nav-link text-light">Home</Link>
                                 </li>
-                                )
-                            })
-                        }
+                                <li className="nav-item ml-5 mr-5 pt-2 pl-4 pr-5">
+                                    <Link exact to='/comsumer-dashboard/aboutus' className="nav-link text-light">About Us</Link>
+                                </li>
+                                <li className="nav-item ml-5 mr-5 pt-2 pl-4 pr-5">
+                                    <Link exact to='/comsumer-dashboard/blog' className="nav-link text-light">Blog</Link>
+                                </li>
                         <li className="nav-item ml-5 pl-4 pr-5" style={{paddingTop:3}}>
                             <p className="nav-link text-light" onClick={logout}><AiOutlineLogout size={30}/></p>
                         </li>

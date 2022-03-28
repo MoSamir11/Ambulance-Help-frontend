@@ -42,7 +42,7 @@ export const AdminNavbar = () => {
         const lData = Cookies.get("Admin")
         if(lData){
             Cookies.remove('Admin');
-            history.push("/");
+            history.push("/admin-login");
         }
     }
     return (
@@ -55,18 +55,34 @@ export const AdminNavbar = () => {
                 <div className={classes.item}>
                 <nav className="navbar navbar-expand-sm navbar-light">
                     <ul className="navbar-nav">
-                        {
-                            data.map((e)=>{
-                            return(
-                                <li className="nav-item ml-5 mr-5 pl-4 pr-5">
-                                    <Tooltip title={e.tooltipTitle} arrow TransitionComponent={Zoom}>
-                                        <Link exact to={e.to} className="nav-link text-light">{e.text}</Link>
-                                    </Tooltip>
-                                </li>
-                                )
-                            })
-                        }
-                        <li className="nav-item ml-5 mr-5 mt-2 pl-4 pr-5" onClick={logout}>
+                        <li className="nav-item ml-5 mr-3 pl-4 pr-5">
+                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
+                                <Link exact to='/admin-dashboard/add-ambulance' className="nav-link text-light"><BiListPlus size={30}/></Link>
+                            </Tooltip>
+                        </li>
+                        <li className="nav-item ml-5 mr-3 pl-4 pr-5">
+                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
+                                <Link exact to='/admin-dashboard/all-ambulance' className="nav-link text-light"><FaAmbulance size={30} /></Link>
+                            </Tooltip>
+                        </li>
+                        <li className="nav-item ml-5 mr-3 pl-4 pr-5">
+                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
+                                <Link exact to='/admin-dashboard/add-staff' className="nav-link text-light"><AiOutlineUserAdd size={30}/></Link>
+                            </Tooltip>
+                        </li>
+                        <li className="nav-item ml-5 mr-3 pl-4 pr-5">
+                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
+                                <Link exact to='/admin-dashboard/all-staff' className="nav-link text-light"><FaListUl size={30}/></Link>
+                            </Tooltip>
+                        </li>
+                        <li className="nav-item ml-5 mr-3 pl-4 pr-5">
+                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
+                                <Badge badgeContent={4} color="secondary" style={{marginTop:'2px'}}>
+                                    <Link exact to='/admin-dashboard/all-staff' className="nav-link text-light"><Notifications size={30}/></Link>
+                                </Badge>
+                            </Tooltip>
+                        </li>
+                        <li className="nav-item ml-5 mr-3 mt-2 pl-4 pr-5" onClick={logout}>
                             <AiOutlineLogout size={30}/>
                         </li>
                     </ul>
