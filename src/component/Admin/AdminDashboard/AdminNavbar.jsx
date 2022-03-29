@@ -61,23 +61,23 @@ export const AdminNavbar = () => {
                             </Tooltip>
                         </li>
                         <li className="nav-item ml-5 mr-3 pl-4 pr-5">
-                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
+                            <Tooltip title='All Ambulance' arrow TransitionComponent={Zoom}>
                                 <Link exact to='/admin-dashboard/all-ambulance' className="nav-link text-light"><FaAmbulance size={30} /></Link>
                             </Tooltip>
                         </li>
                         <li className="nav-item ml-5 mr-3 pl-4 pr-5">
-                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
+                            <Tooltip title='Add Staff' arrow TransitionComponent={Zoom}>
                                 <Link exact to='/admin-dashboard/add-staff' className="nav-link text-light"><AiOutlineUserAdd size={30}/></Link>
                             </Tooltip>
                         </li>
                         <li className="nav-item ml-5 mr-3 pl-4 pr-5">
-                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
+                            <Tooltip title='All Staff' arrow TransitionComponent={Zoom}>
                                 <Link exact to='/admin-dashboard/all-staff' className="nav-link text-light"><FaListUl size={30}/></Link>
                             </Tooltip>
                         </li>
                         <li className="nav-item ml-5 mr-3 pl-4 pr-5">
-                            <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
-                                <Badge badgeContent={4} color="secondary" style={{marginTop:'2px'}}>
+                            <Tooltip title='All Staff' arrow TransitionComponent={Zoom}>
+                                <Badge badgeContent={4} color="secondary">
                                     <Link exact to='/admin-dashboard/all-staff' className="nav-link text-light"><Notifications size={30}/></Link>
                                 </Badge>
                             </Tooltip>

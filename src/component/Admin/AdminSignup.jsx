@@ -82,7 +82,7 @@ export const AdminSignup = () =>{
             placeholder:"Enter phone number"
         },
         {
-            label:'Address',
+            label:'City',
             type:"text",
             name:"address",
             placeholder:"Enter hospital address"
