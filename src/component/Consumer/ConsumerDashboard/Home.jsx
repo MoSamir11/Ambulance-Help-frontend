@@ -23,7 +23,7 @@ import StarBorder from '@mui/icons-material/StarBorder';
 
 import '../../.././App.css'
 import axios from 'axios';
-import { FaCity } from 'react-icons/fa';
+import { FaCity, FaHospital, FaHospitalAlt } from 'react-icons/fa';
 const style = makeStyles((theme) => ({
     container1: {
       width:'60%',
@@ -100,7 +100,7 @@ export const Home = () =>{
         })
     },[])
     const submit = () =>{
-        
+        console.log("103-->",currcity)
         let location = null;
         var latitude = null;
         var longitude = null;
@@ -131,7 +131,23 @@ export const Home = () =>{
             }
         })
     }
-    console.log("city-->",currcity)
+    const bookAmbulance = (id) =>{
+        console.log("135-->",id);
+        const userDetail = Cookies.get('consumer');
+        const decode = jwt_decode(userDetail);
+        console.log("137-->",decode.user);
+        const consumerDetail = {
+            hospitalId:id,
+            consumerId:decode.user.id,
+            consumerName:decode.user.name,
+            consumerContact:decode.user.phone
+        }
+        console.log("144-->",consumerDetail);
+        axios.post('http://localhost:5000/notification',consumerDetail)
+        .then((res)=>{
+            console.log(res.data)
+        })
+    }
     return(
         <>
             <Container className={myClass.container1}>
@@ -161,18 +177,24 @@ export const Home = () =>{
                              <>
                                 <ListItemButton id={hospital._id} button onClick={handleClick}> 
                                     <ListItemIcon>
-                                        <InboxIcon />
-                                    </ListItemIcon>
+                                        <FaHospital size={25} color='009688' />
+                                    </ListItemIcon> 
                                     <ListItemText primary={hospital.hospitalName} />
                                         {openedItemId===`${hospital._id}` ?  <ExpandLess />:<ExpandMore /> }
                                 </ListItemButton>
                                 <Collapse in={openedItemId === `${hospital._id}`} timeout="auto" key={hospital._id} unmountOnExit>
                                     <List component="div" disablePadding key={hospital._id}>
-                                      <ListItemButton sx={{ pl: 4 }}>
+                                      <ListItemButton sx={{ pl: 3 }}>
                                         <ListItemIcon>
-                                          <FaCity />
+                                          <FaCity size={25} color='#80cbc4' />
                                         </ListItemIcon> 
                                         <ListItemText primary={hospital.address} />
+                                      </ListItemButton>
+                                      <ListItemButton sx={{ pl: 3 }}>
+                                          <p>Specialist in : Heart Surgery</p>
+                                      </ListItemButton>
+                                      <ListItemButton sx={{ pl: 3 }}>
+                                        <Button variant="contained" style={{backgroundColor:'#009688'}} size="small" onClick={()=>bookAmbulance(hospital._id)}>Book</Button>
                                       </ListItemButton>
                                     </List>
                                 </Collapse>

@@ -36,30 +36,19 @@ export const AdminLogin = () =>{
         }
         console.log("57-->",candidateData);
         axios.post('http://localhost:5000/admin-login',candidateData)
-        .then((res)=>{
+        .then((res,err)=>{
             if(res.data){
                 console.log("57-->",res.data.token)
-                let adminToken = Cookies.get('Admin');
-                let customerToken = Cookies.get('consumer');
-                if(customerToken)
-                {
-                    alert("You are already logged in as an Consumer first logout from there");
-                    return;
-                }
-                else if(adminToken)
-                {
-                    alert("Already Logged in please destroy the previous one");
-                    // history.push("/admin-dashboard/add-ambulance")
-                    return;
-                }else{
-                    Cookies.set("Admin",res.data.token)
-                    const decoded = jwt_decode(res.data.token);
-                    alert(res.data.message)
-                    history.push("/admin-dashboard/add-ambulance");
-                    console.log(decoded.data)
-                }
-              }else{
+                // let adminToken = Cookies.get('Admin');
+                // let customerToken = Cookies.get('consumer');
+               
+                Cookies.set("Admin",res.data.token)
+                const decoded = jwt_decode(res.data.token);
                 alert(res.data.message)
+                history.push("/admin-dashboard/add-ambulance");
+                console.log(decoded.data)
+              }else{
+                alert(err)
               }
             }
         )

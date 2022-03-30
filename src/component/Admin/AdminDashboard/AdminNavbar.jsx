@@ -1,43 +1,47 @@
 import { alpha, AppBar,InputBase, Drawer,List,Divider,Button,Zoom,Listener,ListItemText,ListItemIcon,Box, makeStyles, Toolbar, Typography, Badge, Avatar,PersonIcon, Tooltip,Container } from '@material-ui/core'
 import { Mail, Search, Notifications, Cancel, MenuOutlined } from '@material-ui/icons';
-import { FaAmbulance ,FaListUl} from 'react-icons/fa';
+import { FaAmbulance ,FaListUl, FaUser} from 'react-icons/fa';
 import { BiListPlus } from 'react-icons/bi';
 import { AiOutlineUserAdd,AiOutlineLogout } from 'react-icons/ai';
+import Popover from '@mui/material/Popover';
+import ListItemButton from '@mui/material/ListItemButton';
 
 import { SearchOff } from '@mui/icons-material';
-import { useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import {BrowserRouter as Router,Switch,Route,Link, useHistory, Redirect} from "react-router-dom";
 import style from '../../Landing/Landing.styles';
 import Cookies from 'js-cookie';
+import jwt_decode from "jwt-decode";
+
+import axios from 'axios';
 export const AdminNavbar = () => {
-    const [open, setOpen] = useState(false)
-    // const classes = useStyles({
-    //     open
-    // })
+    // const [open, setOpen] = useState(false)
     const classes = style();
-    const history = useHistory()
-    const data = [
-        {
-          text: <BiListPlus size={35}/>,
-          to:'/admin-dashboard/add-ambulance',
-          tooltipTitle:'Add Ambulance'
-        },
-        {
-          text: <FaAmbulance size={35} />,
-          to:'/admin-dashboard/all-ambulance',
-          tooltipTitle:'All Ambulance'
-        },
-        {
-          text: <AiOutlineUserAdd size={35}/>,
-          to:'/admin-dashboard/add-staff',
-          tooltipTitle:'Add Staff'
-        },
-        {
-          text: <FaListUl size={35}/>,
-          to:'/admin-dashboard/all-staff',
-          tooltipTitle:'All Staff'
-        }
-    ];
+    const history = useHistory();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    
+      const handleClose = () => {
+        setAnchorEl(null);
+      };
+      const [notifiction,setNotification] = useState([]);
+      const open = Boolean(anchorEl);
+      const id = open ? 'simple-popover' : undefined;
+    useEffect(()=>{
+        const token = Cookies.get("Admin");
+        const decode = jwt_decode(token);
+        // console.log("47-->",decode.data._id);
+        axios.get(`http://localhost:5000/adminList/${decode.data._id}`)
+         .then((res)=>{
+             if(res.data.isSuccess)
+             {
+                 console.log("52-->",res.data.data.notification)
+                 setNotification(res.data.data.notification)
+             }
+        })
+    },[]) 
     function logout(e){
         const lData = Cookies.get("Admin")
         if(lData){
@@ -76,11 +80,25 @@ export const AdminNavbar = () => {
                             </Tooltip>
                         </li>
                         <li className="nav-item ml-5 mr-3 pl-4 pr-5">
-                            <Tooltip title='All Staff' arrow TransitionComponent={Zoom}>
-                                <Badge badgeContent={4} color="secondary">
-                                    <Link exact to='/admin-dashboard/all-staff' className="nav-link text-light"><Notifications size={30}/></Link>
+                                <Badge badgeContent={notifiction.length?notifiction.length:0} color="secondary" style={{position:'fixed'}}>
+                                    <p aria-describedby={id} variant="contained" onClick={handleClick} className="nav-link text-light"><Notifications size={30}/></p>
+                                    <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose} anchorOrigin={{   vertical: 'bottom',   horizontal: 'left', }}>
+                                        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
+                                            {
+                                                notifiction.map((request)=>{
+                                                    return(
+                                                        <ListItemButton>
+                                                            <ListItemIcon>
+                                                                <FaUser /> 
+                                                            </ListItemIcon>
+                                                            <ListItemText primary={request.consumerName} />
+                                                        </ListItemButton>
+                                                    )
+                                                })
+                                            }
+                                        </List>
+                                    </Popover>
                                 </Badge>
-                            </Tooltip>
                         </li>
                         <li className="nav-item ml-5 mr-3 mt-2 pl-4 pr-5" onClick={logout}>
                             <AiOutlineLogout size={30}/>
