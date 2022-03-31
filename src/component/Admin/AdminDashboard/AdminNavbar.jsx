@@ -1,10 +1,14 @@
-import { alpha, AppBar,InputBase, Drawer,List,Divider,Button,Zoom,Listener,ListItemText,ListItemIcon,Box, makeStyles, Toolbar, Typography, Badge, Avatar,PersonIcon, Tooltip,Container } from '@material-ui/core'
-import { Mail, Search, Notifications, Cancel, MenuOutlined } from '@material-ui/icons';
-import { FaAmbulance ,FaListUl, FaUser} from 'react-icons/fa';
+import { AppBar,List,Zoom,ListItemText,ListItemIcon, Toolbar, Typography, Badge, Tooltip, Button,} from '@material-ui/core'
+import { ExpandLess,  Notifications, Phone } from '@material-ui/icons';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+
+import { FaAmbulance ,FaCity,FaListUl, FaUser} from 'react-icons/fa';
 import { BiListPlus } from 'react-icons/bi';
 import { AiOutlineUserAdd,AiOutlineLogout } from 'react-icons/ai';
 import Popover from '@mui/material/Popover';
 import ListItemButton from '@mui/material/ListItemButton';
+import {  FaHospitalAlt } from 'react-icons/fa';
+import Collapse from '@mui/material/Collapse';
 
 import { SearchOff } from '@mui/icons-material';
 import React,{ useEffect, useState } from 'react';
@@ -19,6 +23,7 @@ export const AdminNavbar = () => {
     const classes = style();
     const history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [openedItemId, setOpenedItemId] = React.useState(true);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
@@ -49,6 +54,15 @@ export const AdminNavbar = () => {
             history.push("/admin-login");
         }
     }
+    const handleClicks = orgEvent => {
+        let clickedItemId = orgEvent.currentTarget.id;
+        if (openedItemId === clickedItemId) {
+          setOpenedItemId("");
+        } else {
+          setOpenedItemId(clickedItemId);
+        }
+        //setOpen(!open);
+      };
     return (
         <AppBar position="fixed" className={classes.Appbar}>
             <Toolbar className={classes.toolbar}>
@@ -87,12 +101,32 @@ export const AdminNavbar = () => {
                                             {
                                                 notifiction.map((request)=>{
                                                     return(
-                                                        <ListItemButton>
+                                                        <>
+                                                        {/* <List> */}
+                                                        <ListItemButton id={request._id} button onClick={handleClicks}>
                                                             <ListItemIcon>
                                                                 <FaUser /> 
                                                             </ListItemIcon>
                                                             <ListItemText primary={request.consumerName} />
+                                                            {openedItemId===`${request._id}` ?  <ExpandLess />:<ExpandMore /> }
                                                         </ListItemButton>
+                                                        <Collapse in={openedItemId === `${request._id}`} key={request._id} timeout="auto" unmountOnExit>
+                                                            <List component="div" disablePadding key={request._id}>
+                                                                <ListItemButton sx={{ pl: 3 }}>
+                                                                    <ListItemIcon>
+                                                                        <Phone size={25} color='009688' />
+                                                                    </ListItemIcon> 
+                                                                    <ListItemText primary={request.consumerContact} />
+                                                                </ListItemButton>
+                                                                <ListItemButton sx={{ pl: 3 }}>
+                                                                </ListItemButton>
+                                                                <ListItemButton sx={{ pl: 3 }}>
+                                                                <Button variant="contained" style={{backgroundColor:'#009688'}} size="small">Book</Button>
+                                                                </ListItemButton>
+                                                            </List>
+                                                        </Collapse>
+                                                        {/* </List> */}
+                                                    </>
                                                     )
                                                 })
                                             }

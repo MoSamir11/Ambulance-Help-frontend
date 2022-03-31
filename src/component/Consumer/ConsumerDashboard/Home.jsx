@@ -20,10 +20,11 @@ import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
+import { FaCity, FaHospital, FaHospitalAlt } from 'react-icons/fa';
 
 import '../../.././App.css'
 import axios from 'axios';
-import { FaCity, FaHospital, FaHospitalAlt } from 'react-icons/fa';
+
 const style = makeStyles((theme) => ({
     container1: {
       width:'60%',

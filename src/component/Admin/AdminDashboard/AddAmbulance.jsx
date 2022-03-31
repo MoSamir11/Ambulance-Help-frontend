@@ -79,7 +79,7 @@ export const AddAmbulance = (props) =>{
                 <CardContent className={classes.content1}>
                     <p style={{color:'#3f414d',fontSize:'2.5rem',textAlign:'center'}}>Add Ambulance</p>   
                                                 
-                    <label htmlFor="name" className={classes.label}>Hospital Name</label>
+                <label htmlFor="name" className={classes.label}>Hospital Name</label>
                     <input type="text" name="hospitalName" className={classes.form_control} placeholder="Enter hospital name" value={hospital}  disabled />
                             <div className={classes.division1}>
                                 <label htmlFor="drivername" className={classes.label}>Driver Name</label>
