@@ -40,6 +40,7 @@ export const ConsumerNavbar = () => {
         if(lData){
             Cookies.remove('consumer');
             history.push("/consumer-login");
+            window.location.reload();
         }
     }
     return (

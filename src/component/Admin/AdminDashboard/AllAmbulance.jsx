@@ -47,12 +47,12 @@ export const AllAmbulance = () =>{
         const decoded = jwt_decode(data);
         console.log("38-->",decoded.data.hospitalName);
         setHospital(decoded.data.hospitalName)
-        axios.get(`http://localhost:5000/ambulanceList/${decoded.data.hospitalName}`)
+        axios.get(`http://localhost:5000/all-admin/${decoded.data._id}`)
         .then((res,err)=>{
-            if(res.data.isSuccess)
+            if(res.data)
             {
                 console.log(res.data.data)
-                setAmbulanceList(res.data.data)
+                setAmbulanceList(res.data.data[0].ambulance)
                 setSpinner(false)
             }else{
                 console.log(err)
@@ -82,10 +82,8 @@ export const AllAmbulance = () =>{
                         </TableHead>
                         <TableBody>
                             {ambulanceList.map((row) => (
-                            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">
-                                    {row.hospitalName}
-                                </TableCell>
+                            <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell component="th" scope="row">{hospital}</TableCell>
                                 <TableCell align="center">{row.driverName}</TableCell>
                                 <TableCell align="center">{row.ambulanceNumber}</TableCell>
                                 <TableCell align="center">{row.driverContact}</TableCell>

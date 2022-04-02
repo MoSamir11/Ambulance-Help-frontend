@@ -46,6 +46,7 @@ export const AdminLogin = () =>{
                 const decoded = jwt_decode(res.data.token);
                 alert(res.data.message)
                 history.push("/admin-dashboard/add-ambulance");
+                window.location.reload();
                 console.log(decoded.data)
               }else{
                 alert(err)

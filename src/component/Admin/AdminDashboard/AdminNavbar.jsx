@@ -18,12 +18,31 @@ import Cookies from 'js-cookie';
 import jwt_decode from "jwt-decode";
 
 import axios from 'axios';
+import { makeStyles } from '@mui/styles';
+const myStyle = makeStyles((theme)=>({
+    form_control: {
+        height: "2rem",
+        width: "95%",
+        lineHeight: "40px",
+        background: "transparent",
+        border: "1px solid #d7dbda",
+        fontSize: "14px",
+        color: "#a09e9e",
+        borderRadius: "10px",
+        paddingLeft: "0 0 20px 0",
+        "&:focus":{
+          outline:"none",
+        },
+      },
+}))
 export const AdminNavbar = () => {
     // const [open, setOpen] = useState(false)
     const classes = style();
+    const myClass = myStyle();
     const history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openedItemId, setOpenedItemId] = React.useState(true);
+    const [ambulanceDriver,setAmbulanceDriver] = useState('')
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
@@ -33,17 +52,18 @@ export const AdminNavbar = () => {
       };
       const [notifiction,setNotification] = useState([]);
       const open = Boolean(anchorEl);
+      const [ambulance,setAmbulance] = useState([])
       const id = open ? 'simple-popover' : undefined;
     useEffect(()=>{
         const token = Cookies.get("Admin");
         const decode = jwt_decode(token);
-        // console.log("47-->",decode.data._id);
         axios.get(`http://localhost:5000/adminList/${decode.data._id}`)
          .then((res)=>{
              if(res.data.isSuccess)
              {
                  console.log("52-->",res.data.data.notification)
                  setNotification(res.data.data.notification)
+                 setAmbulance(res.data.data.ambulance)
              }
         })
     },[]) 
@@ -52,6 +72,7 @@ export const AdminNavbar = () => {
         if(lData){
             Cookies.remove('Admin');
             history.push("/admin-login");
+            window.location.reload()
         }
     }
     const handleClicks = orgEvent => {
@@ -63,6 +84,18 @@ export const AdminNavbar = () => {
         }
         //setOpen(!open);
       };
+      const deliverAmbulance = (id,name,consumerId)=>{
+          console.log("_id-->",id);
+          console.log("name-->",name);
+          console.log("consumerId-->",consumerId);
+          const consumerDetail = {driverName:name,consumerId:consumerId,driver:ambulanceDriver};
+          console.log("93-->",consumerDetail);
+          axios.post("http://localhost:5000/ambulance-responce",consumerDetail)
+          .then(res=>{
+              console.log("NULL")
+          })
+      }
+      console.log(ambulanceDriver)
     return (
         <AppBar position="fixed" className={classes.Appbar}>
             <Toolbar className={classes.toolbar}>
@@ -102,7 +135,7 @@ export const AdminNavbar = () => {
                                                 notifiction.map((request)=>{
                                                     return(
                                                         <>
-                                                        {/* <List> */}
+                                                        <List>
                                                         <ListItemButton id={request._id} button onClick={handleClicks}>
                                                             <ListItemIcon>
                                                                 <FaUser /> 
@@ -119,13 +152,24 @@ export const AdminNavbar = () => {
                                                                     <ListItemText primary={request.consumerContact} />
                                                                 </ListItemButton>
                                                                 <ListItemButton sx={{ pl: 3 }}>
+                                                                    <select type="number" name="otp" value={ambulanceDriver} className={myClass.form_control} onChange={(e)=>setAmbulanceDriver(e.target.value)}>
+                                                                        <option disabled>Select Your Driver</option>
+                                                                        {
+                                                                            ambulance.map(name=>{
+                                                                                return(
+                                                                                    <option value={name._id}>{name.driverName}</option>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </select>
                                                                 </ListItemButton>
                                                                 <ListItemButton sx={{ pl: 3 }}>
-                                                                <Button variant="contained" style={{backgroundColor:'#009688'}} size="small">Book</Button>
+                                                                    <Button variant="contained" style={{backgroundColor:'#009688',color:'#fafafa'}} size="small" onClick={()=>deliverAmbulance(request._id,request.consumerName,request.consumerId)}>Deliver</Button>
+                                                                    &nbsp;&nbsp;&nbsp;<Button variant="contained" style={{backgroundColor:'#c62828',color:'#fafafa'}} size="small">Remove</Button>
                                                                 </ListItemButton>
                                                             </List>
                                                         </Collapse>
-                                                        {/* </List> */}
+                                                        </List>
                                                     </>
                                                     )
                                                 })

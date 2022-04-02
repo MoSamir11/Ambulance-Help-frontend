@@ -26,6 +26,7 @@ export const AddStaff = (props) =>{
       const {container1,card1,form_control,label,division1,button} = classes;
       const [spinner, setSpinner] = useState(false);
       const [hospital,sethospital] = useState('');
+      const [id,setId] = useState('')
 
       const lItem = Cookies.get("Admin");
       if(lItem)
@@ -39,19 +40,7 @@ export const AddStaff = (props) =>{
         const decoded = jwt_decode(data);
         console.log("38-->",decoded.data.hospitalName)
         sethospital(decoded.data.hospitalName)
-        axios.get(`http://localhost:5000/ambulanceList/${decoded.data.hospitalName}`)
-        .then((res,err)=>{
-            if(res.data.isSuccess)
-            {
-                console.log(res.data.data)
-                // setAmbulanceList(res.data.data)
-                // setSpinner(false)
-            }else{
-                console.log(err)
-                alert(err)
-            }
-        })
-    },[])
+    })
     const [inputField,setInputField] = useState({
         hospitalName:'',
         employeeName:'',
@@ -77,7 +66,7 @@ export const AddStaff = (props) =>{
             employeeId:inputField.employeeId
           }
           console.log("57-->",userData);
-        axios.post('http://localhost:5000/add-staff',userData)
+        axios.post('http://localhost:5000/add-staff',{...userData,id})
         .then((res)=>{
             if(res.data.isSuccess){
                 console.log("57-->",res.data)

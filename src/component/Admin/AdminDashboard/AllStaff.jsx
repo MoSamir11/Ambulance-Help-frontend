@@ -39,13 +39,15 @@ export const AllStaff = () =>{
     const {container1,card1,form_control,label,division1,button} = classes;
     const [ambulanceList,setAmbulanceList] = useState([]);
     const [spinner, setSpinner] = useState(false)
+    const [hospital,setHospital] = useState('')
     useEffect(()=>{
         setSpinner(TramOutlined)
         const data = Cookies.get("Admin");
         console.log("36-->",data);
         const decoded = jwt_decode(data);
-        console.log("38-->",decoded.data.hospitalName);
-        axios.get(`http://localhost:5000/staffList/${decoded.data.hospitalName}`)
+        console.log("38-->",decoded.data._id);
+        setHospital(decoded.data.hospitalName)
+        axios.get(`http://localhost:5000/staffList/${decoded.data._id}`)
         .then((res,err)=>{
             if(res.data.isSuccess)
             {
@@ -80,10 +82,10 @@ export const AllStaff = () =>{
                             {ambulanceList.map((row) => (
                             <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
-                                    {row.hospitalName}
+                                    {hospital?hospital:'NULL'}
                                 </TableCell>
-                                <TableCell align="center">{row.employeeName}</TableCell>
-                                <TableCell align="center">{row.employeeId}</TableCell>
+                                <TableCell align="center">{row.employeeName?row.employeeName:'NULL'}</TableCell>
+                                <TableCell align="center">{row.employeeId?row.employeeId:'NULL'}</TableCell>
                             </TableRow>
                             ))}
                         </TableBody>

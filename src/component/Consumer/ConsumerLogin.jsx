@@ -79,7 +79,8 @@ export const ConsumerLogin = () =>{
                 alert(res.data.message)
                 Cookies.set("consumer",res.data.token)
                 const decoded = jwt_decode(res.data.token);
-                history.replace('/consumer-dashboard')
+                history.push('/consumer-dashboard')
+                window.location.reload();
 
             }else{
                   alert(res.data.message)

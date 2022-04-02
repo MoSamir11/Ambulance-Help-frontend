@@ -23,6 +23,7 @@ export const AddAmbulance = (props) =>{
     console.log("22-->",props)
 
       const [ambulance,setAmbulance] = useState([]);
+      const [id,setId] = useState('')
       const [hospital,sethospital] = useState();
       const classes = styles();
       const myClass = style();
@@ -49,13 +50,12 @@ export const AddAmbulance = (props) =>{
             return;
         }
         const userData={
-            hospitalName:hospital,
             driverName:inputField.driverName,
             ambulanceNumber:inputField.ambulanceNumber,
             driverContact:inputField.contact    
           }
           console.log("57-->",userData);
-        axios.post('http://localhost:5000/add-ambulance',userData)
+        axios.post('http://localhost:5000/addAmbulance',{...userData,id})
         .then((res)=>{
             if(res.data.isSuccess){
                 console.log("57-->",res.data)
@@ -71,6 +71,7 @@ export const AddAmbulance = (props) =>{
         const decoded = jwt_decode(data);
         console.log("74-->",decoded.data.hospitalName)
         sethospital(decoded.data.hospitalName)
+        setId(decoded.data._id)
     },[])
     return(
         <>
