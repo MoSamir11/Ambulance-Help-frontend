@@ -42,7 +42,8 @@ export const AdminNavbar = () => {
     const history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openedItemId, setOpenedItemId] = React.useState(true);
-    const [ambulanceDriver,setAmbulanceDriver] = useState('')
+    const [ambulanceDriver,setAmbulanceDriver] = useState('');
+    const [hospitalId,setHospitalId] = useState('');
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
@@ -57,6 +58,7 @@ export const AdminNavbar = () => {
     useEffect(()=>{
         const token = Cookies.get("Admin");
         const decode = jwt_decode(token);
+        setHospitalId(decode.data._id)
         axios.get(`http://localhost:5000/adminList/${decode.data._id}`)
          .then((res)=>{
              if(res.data.isSuccess)
@@ -88,12 +90,36 @@ export const AdminNavbar = () => {
           console.log("_id-->",id);
           console.log("name-->",name);
           console.log("consumerId-->",consumerId);
-          const consumerDetail = {driverName:name,consumerId:consumerId,driver:ambulanceDriver};
-          console.log("93-->",consumerDetail);
+
+          const token = Cookies.get("Admin");
+          const detail = jwt_decode(token)
+          console.log("detail-->",detail.data._id);
+          const consumerDetail = {consumerId:consumerId,consumerName:name,driver:ambulanceDriver,hospitalId:detail.data._id,hospitalName:detail.data.hospitalName};
+          console.log("96-->",consumerDetail);
+
           axios.post("http://localhost:5000/ambulance-responce",consumerDetail)
-          .then(res=>{
-              console.log("NULL")
+          .then((res)=>{
+              if(res.data.isSuccess){
+                  alert(res.data.message)
+              }
           })
+      }
+      const deleteNotification = (notificationId)=>{
+        const data = {id:notificationId,hospitalId:hospitalId}  
+        console.log(data);
+        axios.post("http://localhost:5000/delete-ambulance",data)
+        .then(res=>{
+            if(res.data.isSuccess)
+            {
+                alert(res.data.message)
+                window.location.reload(false)
+                console.log(res.data)
+            }else{
+                alert("Something went wrong")
+                window.location.reload(false)
+                console.log(res.data)
+            }
+        })
       }
       console.log(ambulanceDriver)
     return (
@@ -153,7 +179,7 @@ export const AdminNavbar = () => {
                                                                 </ListItemButton>
                                                                 <ListItemButton sx={{ pl: 3 }}>
                                                                     <select type="number" name="otp" value={ambulanceDriver} className={myClass.form_control} onChange={(e)=>setAmbulanceDriver(e.target.value)}>
-                                                                        <option disabled>Select Your Driver</option>
+                                                                        <option selected disabled>Select Your Driver</option>
                                                                         {
                                                                             ambulance.map(name=>{
                                                                                 return(
@@ -165,7 +191,7 @@ export const AdminNavbar = () => {
                                                                 </ListItemButton>
                                                                 <ListItemButton sx={{ pl: 3 }}>
                                                                     <Button variant="contained" style={{backgroundColor:'#009688',color:'#fafafa'}} size="small" onClick={()=>deliverAmbulance(request._id,request.consumerName,request.consumerId)}>Deliver</Button>
-                                                                    &nbsp;&nbsp;&nbsp;<Button variant="contained" style={{backgroundColor:'#c62828',color:'#fafafa'}} size="small">Remove</Button>
+                                                                    &nbsp;&nbsp;&nbsp;<Button variant="contained" style={{backgroundColor:'#c62828',color:'#fafafa'}} size="small" onClick={()=>deleteNotification(request._id)}>Remove</Button>
                                                                 </ListItemButton>
                                                             </List>
                                                         </Collapse>
