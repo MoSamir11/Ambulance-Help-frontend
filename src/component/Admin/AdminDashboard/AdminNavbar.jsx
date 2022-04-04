@@ -68,7 +68,7 @@ export const AdminNavbar = () => {
                  setAmbulance(res.data.data.ambulance)
              }
         })
-    },[]) 
+    },[notifiction]) 
     function logout(e){
         const lData = Cookies.get("Admin")
         if(lData){
@@ -153,7 +153,7 @@ export const AdminNavbar = () => {
                             </Tooltip>
                         </li>
                         <li className="nav-item ml-5 mr-3 pl-4 pr-5">
-                                <Badge badgeContent={notifiction.length?notifiction.length:0} color="secondary" style={{position:'fixed'}}>
+                                <Badge badgeContent={notifiction.length?notifiction.length:0} color="secondary">
                                     <p aria-describedby={id} variant="contained" onClick={handleClick} className="nav-link text-light"><Notifications size={30}/></p>
                                     <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose} anchorOrigin={{   vertical: 'bottom',   horizontal: 'left', }}>
                                         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
@@ -162,7 +162,7 @@ export const AdminNavbar = () => {
                                                     return(
                                                         <>
                                                         <List>
-                                                        <ListItemButton id={request._id} button onClick={handleClicks}>
+                                                        <ListItemButton id={request._id} button onClick={handleClicks}> 
                                                             <ListItemIcon>
                                                                 <FaUser /> 
                                                             </ListItemIcon>
@@ -179,7 +179,7 @@ export const AdminNavbar = () => {
                                                                 </ListItemButton>
                                                                 <ListItemButton sx={{ pl: 3 }}>
                                                                     <select type="number" name="otp" value={ambulanceDriver} className={myClass.form_control} onChange={(e)=>setAmbulanceDriver(e.target.value)}>
-                                                                        <option selected disabled>Select Your Driver</option>
+                                                                        <option selected>Select Your Driver</option>
                                                                         {
                                                                             ambulance.map(name=>{
                                                                                 return(
@@ -211,10 +211,7 @@ export const AdminNavbar = () => {
                     </nav>
                     </div>
                 </div>
-                <div className={classes.buttons}>
-                    {/* <Link type="button" exact to="/admin-login" className={classes.btn}>Admin Login</Link>&nbsp;&nbsp;&nbsp;
-                    <Link type="button" exact to="/consumer-login" className={classes.btn}>Consumer Login</Link> */}
-                </div>
+                <div className={classes.buttons}></div>
             </Toolbar>
         </AppBar>
     )

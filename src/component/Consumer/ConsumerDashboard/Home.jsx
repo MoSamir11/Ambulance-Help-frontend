@@ -20,10 +20,11 @@ import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
-import { FaCity, FaHospital, FaHospitalAlt } from 'react-icons/fa';
+import { FaCity, FaHospital, FaHospitalAlt, FaSearch } from 'react-icons/fa';
 
 import '../../.././App.css'
 import axios from 'axios';
+import { SearchOff } from '@mui/icons-material';
 
 const style = makeStyles((theme) => ({
     container1: {
@@ -147,6 +148,7 @@ export const Home = () =>{
         axios.post('http://localhost:5000/notification',consumerDetail)
         .then((res)=>{
             console.log(res.data)
+            alert(res.data.message)
         })
     }
     return(
@@ -166,7 +168,7 @@ export const Home = () =>{
                     }
                     </select>
                 </div>
-                <button className={myClass.btn} onClick={submit}>Book am ambulance</button>
+                <button className={myClass.btn} onClick={submit}><FaSearch />... Find ambulance</button>
                 <ListSubheader component="div" id="nested-list-subheader">
                     Hospital List
                 </ListSubheader>
