@@ -40,7 +40,9 @@ export const AddStaff = (props) =>{
         const decoded = jwt_decode(data);
         console.log("38-->",decoded.data.hospitalName)
         sethospital(decoded.data.hospitalName)
-    })
+        setId(decoded.data._id)
+        console.log("44-->",decoded.data._id);
+    },[])
     const [inputField,setInputField] = useState({
         hospitalName:'',
         employeeName:'',
@@ -65,7 +67,7 @@ export const AddStaff = (props) =>{
             employeeName:inputField.employeeName,
             employeeId:inputField.employeeId
           }
-          console.log("57-->",userData);
+          console.log("57-->",{...userData,id})
         axios.post('http://localhost:5000/add-staff',{...userData,id})
         .then((res)=>{
             if(res.data.isSuccess){

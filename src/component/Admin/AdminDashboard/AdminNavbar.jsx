@@ -68,7 +68,7 @@ export const AdminNavbar = () => {
                  setAmbulance(res.data.data.ambulance)
              }
         })
-    },[notifiction]) 
+    },[]) 
     function logout(e){
         const lData = Cookies.get("Admin")
         if(lData){
@@ -121,7 +121,7 @@ export const AdminNavbar = () => {
             }
         })
       }
-      console.log(ambulanceDriver)
+    //   console.log(ambulanceDriver)
     return (
         <AppBar position="fixed" className={classes.Appbar}>
             <Toolbar className={classes.toolbar}>
