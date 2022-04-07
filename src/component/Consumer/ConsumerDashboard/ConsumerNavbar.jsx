@@ -19,20 +19,21 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 
 import { FaCity, FaUser} from 'react-icons/fa';
+import { Notification } from './Notification';
 export const ConsumerNavbar = () => {
   
     const classes = style();
     const history = useHistory();
-
+    const [anchorEl, setAnchorEl] = React.useState(null);
     const [notification,setNotification] = useState([]);
     const [openedItemId, setOpenedItemId] = React.useState(true);
-    useEffect(()=>{
-        const token = Cookies.get("consumer");
-        const decode = jwt_decode(token);
-        console.log("24-->",decode.user.notification);
-        setNotification(decode.user.notification)
-    },[notification])
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    // useEffect(()=>{
+    //     const token = Cookies.get("consumer");
+    //     const decode = jwt_decode(token);
+    //     console.log("24-->",decode.user.notification);
+    //     setNotification(decode.user.notification)
+    // },[notification])
+    // const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,7 +49,7 @@ export const ConsumerNavbar = () => {
     } else {
       setOpenedItemId(clickedItemId);
     }
-    //setOpen(!open);
+    // setOpen(!open);
   };
 
   const open = Boolean(anchorEl);
@@ -74,7 +75,7 @@ export const ConsumerNavbar = () => {
                     <ul className="navbar-nav">
                                 <li className="nav-item ml-5 mr-5 pt-2 pl-4 pr-5">
                                     <Tooltip title='Add Ambulance' arrow TransitionComponent={Zoom}>
-                                        <Link exact to='/comsumer-dashboard/home' className="nav-link text-light">Home</Link>
+                                        <Link exact to='/consumer-dashboard/home' className="nav-link text-light">Home</Link>
                                     </Tooltip>
                                 </li>
                                 <li className="nav-item ml-5 mr-5 pt-2 pl-4 pr-5">
@@ -84,48 +85,11 @@ export const ConsumerNavbar = () => {
                                     <Link exact to='/comsumer-dashboard/blog' className="nav-link text-light">Blog</Link>
                                 </li>
                                 <li className="nav-item ml-5 mr-3 pl-4 pr-5" style={{marginTop:'9px'}}> 
-                                <Badge badgeContent={notification.length?notification.length:0} color="secondary" style={{position:'fixed'}}>
-                                    <p aria-describedby={id} variant="contained" onClick={handleClick} className="nav-link text-light"><Notifications size={30}/></p>
-                                    <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose} anchorOrigin={{   vertical: 'bottom',   horizontal: 'left', }}>
-                                        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
-                                            {
-                                                notification.map((responce)=>{
-                                                    return(
-                                                        <>
-                                                            <ListItemButton id={responce._id} onClick={handleClicks}>
-                                                                <ListItemIcon>
-                                                                    <DriveEta style={{color:'#26c6da'}} />
-                                                                </ListItemIcon>
-                                                                <ListItemText primary={responce.driverName} />
-                                                                {openedItemId===`${responce._id}` ?  <ExpandLess />:<ExpandMore /> }
-                                                            </ListItemButton>
-                                                            <Collapse in={openedItemId === `${responce._id}`} key={responce._id} timeout="auto" unmountOnExit>
-                                                                <List component="div" disablePadding key={responce._id}>
-                                                                    <ListItemButton sx={{ pl: 3 }}>
-                                                                        <ListItemIcon>
-                                                                            <Phone size={25} style={{color:'#009688'}} />
-                                                                        </ListItemIcon> 
-                                                                        <ListItemText primary={responce.driverContact} />
-                                                                    </ListItemButton>
-                                                                    <ListItemButton sx={{ pl: 3 }}>
-                                                                        <ListItemIcon>
-                                                                            <FaHospital size={25} color='009688' />
-                                                                        </ListItemIcon> 
-                                                                        <ListItemText primary={responce.hospitalName} />
-                                                                    </ListItemButton>
-                                                                </List>
-                                                            </Collapse>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </List> 
-                                    </Popover>
-                                </Badge>
+                                <Notification />
                                 </li>
-                        <li className="nav-item ml-5 pl-4 pr-5" style={{paddingTop:3}}>
-                            <p className="nav-link text-light" onClick={logout}><AiOutlineLogout size={30}/></p>
-                        </li>
+                                <li className="nav-item ml-5 pl-4 pr-5" style={{paddingTop:3}}>
+                                    <p className="nav-link text-light" onClick={logout}><AiOutlineLogout size={30}/></p>
+                                </li>
                     </ul>
                     </nav>
                     </div>

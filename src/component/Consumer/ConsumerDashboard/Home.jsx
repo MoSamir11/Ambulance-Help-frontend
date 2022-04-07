@@ -29,10 +29,10 @@ import { SearchOff } from '@mui/icons-material';
 const style = makeStyles((theme) => ({
     container1: {
       width:'60%',
-      paddingTop: theme.spacing(10),
-      [theme.breakpoints.down("sm")]: {
-        width:'100%',
-      },
+      paddingTop: theme.spacing(20),
+    //   [theme.breakpoints.down("sm")]: {
+    //     width:'100%',
+    //   },
     },
     division:{
         paddingTop: theme.spacing(2),
@@ -172,11 +172,12 @@ export const Home = () =>{
                 <ListSubheader component="div" id="nested-list-subheader">
                     Hospital List
                 </ListSubheader>
-                {spinner?<>
+                {spinner?
+                <>
                 <div className="text-center" style={{ marginTop: '3%', marginRight: '84%' }}><BounceLoader size={100} color="#089bab"/></div></>:<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
                     {
-                        hospitalList.map(hospital=>(
-                        //  return(
+                        hospitalList.map(hospital=>{
+                         return(
                              <>
                                 <ListItemButton id={hospital._id} button onClick={handleClick}> 
                                     <ListItemIcon>
@@ -202,10 +203,11 @@ export const Home = () =>{
                                     </List>
                                 </Collapse>
                              </>
-                        //  )  
-                        ))
+                         )  
+                         })
                     }
                 </List>}
+                
             </Container>
         </>
     )

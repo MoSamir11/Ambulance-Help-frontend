@@ -87,6 +87,10 @@ export const AdminNavbar = () => {
         //setOpen(!open);
       };
       const deliverAmbulance = (id,name,consumerId)=>{
+          if(ambulanceDriver == ''){
+              alert("Select your driver")
+            return;
+          }
           console.log("_id-->",id);
           console.log("name-->",name);
           console.log("consumerId-->",consumerId);
