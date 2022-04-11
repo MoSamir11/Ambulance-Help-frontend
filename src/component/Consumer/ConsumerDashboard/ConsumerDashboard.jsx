@@ -12,8 +12,8 @@ export const ConsumerDashboard = () =>{
             <Router>
                 <ConsumerNavbar />
                 <Switch>
-                    <Route exact path="/comsumer-dashboard/home" component={Home} />
-                    <Route exact path="/comsumer-dashboard/aboutus" component={AboutUs} />
+                    <Route exact path="/consumer-dashboard/home" component={Home} />
+                    <Route exact path="/consumer-dashboard/aboutus" component={AboutUs} />
                     {/* <Route exact path="/admin-dashboard/all-ambulance" component={AllAmbulance}/>
                     <Route exact path="/admin-dashboard/all-staff" component={AllStaff}/> */}
                 </Switch>

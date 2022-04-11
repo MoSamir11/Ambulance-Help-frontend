@@ -68,7 +68,7 @@ function App() {
           <Route exact path="/consumer-dashboard/home" component={ConsumerDashboard} />
           <Route exact path="/comsumer-dashboard/aboutus" component={ConsumerDashboard} />
           {/* <Route exact path="/carousel" component={Carousel} /> */}
-          <Route exact path="/comsumer-dashboard/aboutus" component={ConsumerDashboard} />
+          <Route exact path="/consumer-dashboard/aboutus" component={ConsumerDashboard} />
           <Route exact path="/expanding" component={Expanding} />
           <Route exact path="/expand" component={AnExpand} />
         </Switch>

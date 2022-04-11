@@ -79,10 +79,10 @@ export const ConsumerNavbar = () => {
                                     </Tooltip>
                                 </li>
                                 <li className="nav-item ml-5 mr-5 pt-2 pl-4 pr-5">
-                                    <Link exact to='/comsumer-dashboard/aboutus' className="nav-link text-light">About Us</Link>
+                                    <Link exact to='/consumer-dashboard/aboutus' className="nav-link text-light">About Us</Link>
                                 </li>
                                 <li className="nav-item ml-5 mr-5 pt-2 pl-4 pr-5">
-                                    <Link exact to='/comsumer-dashboard/blog' className="nav-link text-light">Blog</Link>
+                                    <Link exact to='/consumer-dashboard/blog' className="nav-link text-light">Blog</Link>
                                 </li>
                                 <li className="nav-item ml-5 mr-3 pl-4 pr-5" style={{marginTop:'9px'}}> 
                                 <Notification />
