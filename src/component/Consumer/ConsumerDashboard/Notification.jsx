@@ -27,7 +27,7 @@ export const Notification = () =>{
     useEffect(()=>{
         const token = Cookies.get("consumer");
         const decode = jwt_decode(token);
-        console.log("24-->",decode.user.notification);
+        console.log("24-->",decode.user);
         setNotification(decode.user.notification)
     },[])
     // const [anchorEl, setAnchorEl] = React.useState(null);
@@ -62,7 +62,7 @@ export const Notification = () =>{
                                 notification.map((responce)=>{
                                     return(
                                             <>
-                                                <ListItemButton id={responce._id} onClick={handleClicks}>
+                                                <ListItemButton id={responce._id} onClick={handleClicks} key={responce._id}>
                                                     <ListItemIcon>
                                                         <DriveEta style={{color:'#26c6da'}} />
                                                     </ListItemIcon>

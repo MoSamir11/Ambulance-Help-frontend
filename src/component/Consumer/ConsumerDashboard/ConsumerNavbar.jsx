@@ -85,7 +85,7 @@ export const ConsumerNavbar = () => {
                                     <Link exact to='/consumer-dashboard/blog' className="nav-link text-light">Blog</Link>
                                 </li>
                                 <li className="nav-item ml-5 mr-3 pl-4 pr-5" style={{marginTop:'9px'}}> 
-                                <Notification />
+                                    <Notification />
                                 </li>
                                 <li className="nav-item ml-5 pl-4 pr-5" style={{paddingTop:3}}>
                                     <p className="nav-link text-light" onClick={logout}><AiOutlineLogout size={30}/></p>

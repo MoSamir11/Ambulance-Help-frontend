@@ -68,7 +68,7 @@ export const AdminNavbar = () => {
                  setAmbulance(res.data.data.ambulance)
              }
         })
-    },[]) 
+    },[notifiction]) 
     function logout(e){
         const lData = Cookies.get("Admin")
         if(lData){
