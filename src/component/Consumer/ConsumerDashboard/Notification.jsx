@@ -29,7 +29,7 @@ export const Notification = () =>{
         const decode = jwt_decode(token);
         console.log("24-->",decode.user);
         setNotification(decode.user.notification)
-    },[])
+    },[notification])
     // const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
