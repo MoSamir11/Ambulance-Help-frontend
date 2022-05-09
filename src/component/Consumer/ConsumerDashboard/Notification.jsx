@@ -19,17 +19,25 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 
 import { FaCity, FaUser} from 'react-icons/fa';
+import axios from 'axios';
 
-export const Notification = () =>{
+export const Notification = (props) =>{
+    console.log("Props-->",props.notification)
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [notification,setNotification] = useState([]);
+    // const [notification,setNotification] = useState([props.notification]);
+    const notification = props.notification
+    console.log("29-->",notification)
     const [openedItemId, setOpenedItemId] = React.useState(true);
-    useEffect(()=>{
-        const token = Cookies.get("consumer");
-        const decode = jwt_decode(token);
-        console.log("24-->",decode.user);
-        setNotification(decode.user.notification)
-    },[notification])
+    // useEffect(()=>{
+    //     const token = Cookies.get("consumer");
+    //     const decode = jwt_decode(token);
+    //     console.log(decode.user.id)
+    //     axios.get(`http://localhost:5000/consumerList/${decode.user.id}`)
+    //     .then((res)=>{
+    //         console.log("35-->",res.data)
+    //         setNotification(decode.user.notification);
+    //     })
+    // },[notification])
     // const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -54,34 +62,34 @@ export const Notification = () =>{
      
     return(
         <>
-            <Badge badgeContent={notification.length?notification.length:0} color="secondary" style={{position:'fixed'}}>
+            <Badge badgeContent={props.notification.length?props.notification.length:0} color="secondary" style={{position:'fixed'}}>
                 <p aria-describedby={id} variant="contained" onClick={handleClick} className="nav-link text-light"><Notifications size={30}/></p>
                     <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose} anchorOrigin={{   vertical: 'bottom',   horizontal: 'left', }}>
                         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
                             {
-                                notification.map((responce)=>{
+                                props.notification.map((responce)=>{
                                     return(
                                             <>
                                                 <ListItemButton id={responce._id} onClick={handleClicks} key={responce._id}>
                                                     <ListItemIcon>
-                                                        <DriveEta style={{color:'#26c6da'}} />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={responce.driverName} />
+                                                                    <FaHospital size={25} color='009688' />
+                                                                </ListItemIcon> 
+                                                                <ListItemText primary={responce.hospitalName} />
                                                     {openedItemId===`${responce._id}` ?  <ExpandLess />:<ExpandMore /> }
                                                     </ListItemButton>
                                                     <Collapse in={openedItemId === `${responce._id}`} key={responce._id} timeout="auto" unmountOnExit>
                                                         <List component="div" disablePadding key={responce._id}>
+                                                        <ListItemButton sx={{ pl: 3 }}>
+                                                                <ListItemIcon>
+                                                                    <DriveEta style={{color:'#009688'}} />
+                                                                    </ListItemIcon>
+                                                                <ListItemText primary={responce.driverName} /> 
+                                                            </ListItemButton>
                                                             <ListItemButton sx={{ pl: 3 }}>
                                                                 <ListItemIcon>
                                                                     <Phone size={25} style={{color:'#009688'}} />
                                                                 </ListItemIcon> 
-                                                                <ListItemText primary={responce.driverContact} />
-                                                            </ListItemButton>
-                                                            <ListItemButton sx={{ pl: 3 }}>
-                                                                <ListItemIcon>
-                                                                    <FaHospital size={25} color='009688' />
-                                                                </ListItemIcon> 
-                                                                <ListItemText primary={responce.hospitalName} />
+                                                                <ListItemText primary={responce.driverContact} />    
                                                             </ListItemButton>
                                                         </List>
                                                     </Collapse>

@@ -94,7 +94,7 @@ export const Home = () =>{
     useEffect(()=>{
         const token = Cookies.get("consumer");
         const decode = jwt_decode(token);
-        console.log("24-->",decode.user.name)
+        console.log("24-->",decode.user.notification)
         setName(decode.user.name);
         axios.get("http://localhost:5000/all-admin")
         .then((res)=>{

@@ -1,4 +1,3 @@
-import { AdminNavbar } from "./AdminNavbar"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AddAmbulance } from "./AddAmbulance";
 import { AddStaff } from "./AddStaff";
@@ -7,13 +6,14 @@ import jwt_decode from "jwt-decode";
 import { useState,useEffect } from "react";
 import { AllStaff } from "./AllStaff";
 import Cookies from 'js-cookie'
+import AdminNavbar1 from "./AdminNavbar1";
 
 export const AdminDashboard = () =>{
     const [hospital,sethospital] = useState('');
     return(
         <>
             <Router>
-                <AdminNavbar />
+                <AdminNavbar1 />
                 <Switch>
                     <Route exact path="/admin-dashboard/add-ambulance" component={AddAmbulance}/>
                     <Route exact path="/admin-dashboard/add-staff" component={AddStaff}/>

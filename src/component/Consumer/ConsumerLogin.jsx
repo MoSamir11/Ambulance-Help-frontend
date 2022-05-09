@@ -105,7 +105,7 @@ export const ConsumerLogin = () =>{
                     {
                         !view?
                         <div className={classes.division}>
-                            <button className={classes.button} onClick={viewFunction} >Sign Up</button>
+                            <button className={classes.button} onClick={viewFunction} >Sign In</button>
                         </div>:''
                     }
                     {

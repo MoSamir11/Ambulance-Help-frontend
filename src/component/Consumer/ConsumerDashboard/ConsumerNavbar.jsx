@@ -20,6 +20,7 @@ import Collapse from '@mui/material/Collapse';
 
 import { FaCity, FaUser} from 'react-icons/fa';
 import { Notification } from './Notification';
+import axios from 'axios';
 export const ConsumerNavbar = () => {
   
     const classes = style();
@@ -27,14 +28,21 @@ export const ConsumerNavbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [notification,setNotification] = useState([]);
     const [openedItemId, setOpenedItemId] = React.useState(true);
-    // useEffect(()=>{
-    //     const token = Cookies.get("consumer");
-    //     const decode = jwt_decode(token);
-    //     console.log("24-->",decode.user.notification);
-    //     setNotification(decode.user.notification)
-    // },[notification])
+    useEffect(()=>{
+        const token = Cookies.get("consumer");
+        const decode = jwt_decode(token);
+        console.log("24-->",decode.user.notification);
+        setNotification(decode.user.notification);
+        axios.get(`http://localhost:5000/consumerList/${decode.user.id}`)
+        .then((res)=>{
+            if(res.data){
+            console.log("37-->",res.data);
+            // setNotification(res.data.notification);
+            }
+        })
+    },[notification])
     // const [anchorEl, setAnchorEl] = React.useState(null);
-
+    console.log("42-->",notification);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -85,7 +93,7 @@ export const ConsumerNavbar = () => {
                                     <Link exact to='/consumer-dashboard/blog' className="nav-link text-light">Blog</Link>
                                 </li>
                                 <li className="nav-item ml-5 mr-3 pl-4 pr-5" style={{marginTop:'9px'}}> 
-                                    <Notification />
+                                    <Notification notification={notification} />
                                 </li>
                                 <li className="nav-item ml-5 pl-4 pr-5" style={{paddingTop:3}}>
                                     <p className="nav-link text-light" onClick={logout}><AiOutlineLogout size={30}/></p>

@@ -35,8 +35,8 @@ const myStyle = makeStyles((theme)=>({
         },
       },
 }))
-export const AdminNavbar = () => {
-    // const [open, setOpen] = useState(false)
+export const AdminNavbar = (props) => {
+    console.log("39-->",props);
     const classes = style();
     const myClass = myStyle();
     const history = useHistory();
@@ -55,20 +55,20 @@ export const AdminNavbar = () => {
       const open = Boolean(anchorEl);
       const [ambulance,setAmbulance] = useState([])
       const id = open ? 'simple-popover' : undefined;
-    useEffect(()=>{
-        const token = Cookies.get("Admin");
-        const decode = jwt_decode(token);
-        setHospitalId(decode.data._id)
-        axios.get(`http://localhost:5000/adminList/${decode.data._id}`)
-         .then((res)=>{
-             if(res.data.isSuccess)
-             {
-                 console.log("52-->",res.data.data.notification)
-                 setNotification(res.data.data.notification)
-                 setAmbulance(res.data.data.ambulance)
-             }
-        })
-    },[]) 
+    // useEffect(()=>{
+    //     const token = Cookies.get("Admin");
+    //     const decode = jwt_decode(token);
+    //     setHospitalId(decode.data._id)
+    //     axios.get(`http://localhost:5000/adminList/${decode.data._id}`)
+    //      .then((res)=>{
+    //          if(res.data.isSuccess)
+    //          {
+    //              console.log("52-->",res.data.data.notification)
+    //              setNotification(res.data.data.notification)
+    //              setAmbulance(res.data.data.ambulance)
+    //          }
+    //     })
+    // },[]) 
     function logout(e){
         const lData = Cookies.get("Admin")
         if(lData){
@@ -111,7 +111,7 @@ export const AdminNavbar = () => {
       const deleteNotification = (notificationId)=>{
         const data = {id:notificationId,hospitalId:hospitalId}  
         console.log(data);
-        axios.post("http://localhost:5000/delete-ambulance",data)
+        axios.post("http://localhost:5000/delete-notification",data)
         .then(res=>{
             if(res.data.isSuccess)
             {
@@ -161,7 +161,7 @@ export const AdminNavbar = () => {
                                     <p aria-describedby={id} variant="contained" onClick={handleClick} className="nav-link text-light"><Notifications size={30}/></p>
                                     <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose} anchorOrigin={{   vertical: 'bottom',   horizontal: 'left', }}>
                                         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
-                                            {
+                                            {/* {
                                                 notifiction.map((request)=>{
                                                     return(
                                                         <>
@@ -203,7 +203,7 @@ export const AdminNavbar = () => {
                                                     </>
                                                     )
                                                 })
-                                            }
+                                            } */}
                                         </List>
                                     </Popover>
                                 </Badge>
@@ -220,3 +220,5 @@ export const AdminNavbar = () => {
         </AppBar>
     )
 }
+// export default AdminNavbar
+
