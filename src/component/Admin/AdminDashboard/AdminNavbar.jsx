@@ -55,20 +55,20 @@ export const AdminNavbar = (props) => {
       const open = Boolean(anchorEl);
       const [ambulance,setAmbulance] = useState([])
       const id = open ? 'simple-popover' : undefined;
-    // useEffect(()=>{
-    //     const token = Cookies.get("Admin");
-    //     const decode = jwt_decode(token);
-    //     setHospitalId(decode.data._id)
-    //     axios.get(`http://localhost:5000/adminList/${decode.data._id}`)
-    //      .then((res)=>{
-    //          if(res.data.isSuccess)
-    //          {
-    //              console.log("52-->",res.data.data.notification)
-    //              setNotification(res.data.data.notification)
-    //              setAmbulance(res.data.data.ambulance)
-    //          }
-    //     })
-    // },[]) 
+    useEffect(()=>{
+        const token = Cookies.get("Admin");
+        const decode = jwt_decode(token);
+        setHospitalId(decode.data._id)
+        axios.get(`http://localhost:5000/adminList/${decode.data._id}`)
+         .then((res)=>{
+             if(res.data.isSuccess)
+             {
+                 console.log("52-->",res.data.data.notification)
+                 setNotification(res.data.data.notification)
+                 setAmbulance(res.data.data.ambulance)
+             }
+        })
+    },[]) 
     function logout(e){
         const lData = Cookies.get("Admin")
         if(lData){
