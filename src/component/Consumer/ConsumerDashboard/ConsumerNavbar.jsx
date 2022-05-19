@@ -12,11 +12,6 @@ import Cookies from 'js-cookie';
 import jwt_decode from "jwt-decode";
 import { useEffect } from 'react';
 import React from 'react';
-import Popover from '@mui/material/Popover';
-import ListItemButton from '@mui/material/ListItemButton';
-import { ExpandLess,   Phone } from '@material-ui/icons';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import Collapse from '@mui/material/Collapse';
 
 import { FaCity, FaUser} from 'react-icons/fa';
 import { Notification } from './Notification';
@@ -31,19 +26,20 @@ export const ConsumerNavbar = () => {
     useEffect(()=>{
         const token = Cookies.get("consumer");
         const decode = jwt_decode(token);
-        console.log("24-->",decode.user.notification);
+        console.log("24-->",decode.user);
+        console.log("Hello World")
         setNotification(decode.user.notification);
-        axios.get(`http://localhost:5000/consumerList/${decode.user.id}`)
+        var id = decode.user.id;
+        axios.get(`http://localhost:5000/consumerList/${id}`)
         .then((res)=>{
-            if(res.data){
-            console.log("37-->",res.data);
-            // setNotification(res.data.notification);
+            if(res.data.isSuccess){
+            console.log("36-->",res.data.data)
+            setNotification(res.data.data.notification);
             }
         })
-    },[notification])
+    },[])
     // const [anchorEl, setAnchorEl] = React.useState(null);
-    console.log("42-->",notification);
-  const handleClick = (event) => {
+    const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 

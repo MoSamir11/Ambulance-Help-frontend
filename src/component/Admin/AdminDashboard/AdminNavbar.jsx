@@ -36,7 +36,7 @@ const myStyle = makeStyles((theme)=>({
       },
 }))
 export const AdminNavbar = (props) => {
-    console.log("39-->",props);
+    console.log("39 props-->",props);
     const classes = style();
     const myClass = myStyle();
     const history = useHistory();
@@ -52,6 +52,7 @@ export const AdminNavbar = (props) => {
         setAnchorEl(null);
       };
       const [notifiction,setNotification] = useState([]);
+
       const open = Boolean(anchorEl);
       const [ambulance,setAmbulance] = useState([])
       const id = open ? 'simple-popover' : undefined;
@@ -59,16 +60,17 @@ export const AdminNavbar = (props) => {
         const token = Cookies.get("Admin");
         const decode = jwt_decode(token);
         setHospitalId(decode.data._id)
+        // setNotification(props.notification)
         axios.get(`http://localhost:5000/adminList/${decode.data._id}`)
          .then((res)=>{
              if(res.data.isSuccess)
              {
-                 console.log("52-->",res.data.data.notification)
+                 console.log("66-->",res.data.data.notification)
                  setNotification(res.data.data.notification)
                  setAmbulance(res.data.data.ambulance)
              }
         })
-    },[]) 
+    },[notifiction]) 
     function logout(e){
         const lData = Cookies.get("Admin")
         if(lData){
@@ -77,15 +79,7 @@ export const AdminNavbar = (props) => {
             window.location.reload()
         }
     }
-    const handleClicks = orgEvent => {
-        let clickedItemId = orgEvent.currentTarget.id;
-        if (openedItemId === clickedItemId) {
-          setOpenedItemId("");
-        } else {
-          setOpenedItemId(clickedItemId);
-        }
-        //setOpen(!open);
-      };
+    
       const deliverAmbulance = (id,name,consumerId)=>{
           if(ambulanceDriver == ''){
               alert("Select your driver")
@@ -108,6 +102,16 @@ export const AdminNavbar = (props) => {
               }
           })
       }
+      const handleClicks = orgEvent => {
+        let clickedItemId = orgEvent.currentTarget.id;
+        if (openedItemId === clickedItemId) {
+          setOpenedItemId("");
+        } else {
+          setOpenedItemId(clickedItemId);
+        }
+        //setOpen(!open);
+      };
+      console.log("105-->",notifiction)
       const deleteNotification = (notificationId)=>{
         const data = {id:notificationId,hospitalId:hospitalId}  
         console.log(data);
@@ -161,7 +165,7 @@ export const AdminNavbar = (props) => {
                                     <p aria-describedby={id} variant="contained" onClick={handleClick} className="nav-link text-light"><Notifications size={30}/></p>
                                     <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose} anchorOrigin={{   vertical: 'bottom',   horizontal: 'left', }}>
                                         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
-                                            {/* {
+                                            {
                                                 notifiction.map((request)=>{
                                                     return(
                                                         <>
@@ -203,7 +207,7 @@ export const AdminNavbar = (props) => {
                                                     </>
                                                     )
                                                 })
-                                            } */}
+                                            }
                                         </List>
                                     </Popover>
                                 </Badge>

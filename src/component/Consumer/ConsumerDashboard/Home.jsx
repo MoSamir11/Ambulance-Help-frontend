@@ -94,7 +94,7 @@ export const Home = () =>{
     useEffect(()=>{
         const token = Cookies.get("consumer");
         const decode = jwt_decode(token);
-        console.log("24-->",decode.user.notification)
+        console.log("24-->",decode.user)
         setName(decode.user.name);
         axios.get("http://localhost:5000/all-admin")
         .then((res)=>{
@@ -178,7 +178,7 @@ export const Home = () =>{
                     {
                         hospitalList.map(hospital=>{
                          return(
-                             <>
+                             <div key={hospital._id}>
                                 <ListItemButton id={hospital._id} button onClick={handleClick}> 
                                     <ListItemIcon>
                                         <FaHospital size={25} color='009688' />
@@ -202,7 +202,7 @@ export const Home = () =>{
                                       </ListItemButton>
                                     </List>
                                 </Collapse>
-                             </>
+                             </div>
                          )  
                          })
                     }

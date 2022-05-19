@@ -22,23 +22,10 @@ import { FaCity, FaUser} from 'react-icons/fa';
 import axios from 'axios';
 
 export const Notification = (props) =>{
-    console.log("Props-->",props.notification)
     const [anchorEl, setAnchorEl] = React.useState(null);
-    // const [notification,setNotification] = useState([props.notification]);
     const notification = props.notification
-    console.log("29-->",notification)
     const [openedItemId, setOpenedItemId] = React.useState(true);
-    // useEffect(()=>{
-    //     const token = Cookies.get("consumer");
-    //     const decode = jwt_decode(token);
-    //     console.log(decode.user.id)
-    //     axios.get(`http://localhost:5000/consumerList/${decode.user.id}`)
-    //     .then((res)=>{
-    //         console.log("35-->",res.data)
-    //         setNotification(decode.user.notification);
-    //     })
-    // },[notification])
-    // const [anchorEl, setAnchorEl] = React.useState(null);
+    
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
