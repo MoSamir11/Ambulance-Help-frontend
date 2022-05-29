@@ -23,18 +23,31 @@ import axios from 'axios';
 
 export const Notification = (props) =>{
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const notification = props.notification
-    const [openedItemId, setOpenedItemId] = React.useState(true);
+    var allData=[];
+    allData = props.notification;
+    var isAllData = false;
     
+    var sum = 0;
+    console.log("props notification 28-->",props)
+    for(var i in allData.notification)
+    {
+        sum++;
+    }
+    if(sum>0)
+    {
+        isAllData=true;
+    }
+    console.log("sum-->",sum);
+    console.log("allData-->",allData)
+    const [openedItemId, setOpenedItemId] = React.useState(true);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const handleClicks = orgEvent => {
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const handleClicks = orgEvent => {
     let clickedItemId = orgEvent.currentTarget.id;
     if (openedItemId === clickedItemId) {
       setOpenedItemId("");
@@ -42,24 +55,24 @@ export const Notification = (props) =>{
       setOpenedItemId(clickedItemId);
     }
     // setOpen(!open);
-  };
-
+    };
+    console.log(" 58-->",isAllData)
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
      
     return(
         <>
-            <Badge badgeContent={props.notification.length?props.notification.length:0} color="secondary" style={{position:'fixed'}}>
+            <Badge badgeContent={sum?sum:0} color="secondary" style={{position:'fixed'}}>
                 <p aria-describedby={id} variant="contained" onClick={handleClick} className="nav-link text-light"><Notifications size={30}/></p>
                     <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose} anchorOrigin={{   vertical: 'bottom',   horizontal: 'left', }}>
                         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
                             {
-                                props.notification.map((responce)=>{
+                                isAllData?allData.notification.map((responce)=>{
                                     return(
                                             <>
                                                 <ListItemButton id={responce._id} onClick={handleClicks} key={responce._id}>
                                                     <ListItemIcon>
-                                                                    <FaHospital size={25} color='009688' />
+                                                                <FaHospital size={25} color='009688' />
                                                                 </ListItemIcon> 
                                                                 <ListItemText primary={responce.hospitalName} />
                                                     {openedItemId===`${responce._id}` ?  <ExpandLess />:<ExpandMore /> }
@@ -82,8 +95,8 @@ export const Notification = (props) =>{
                                                     </Collapse>
                                             </>
                                             )
-                                        })
-                                    }
+                                        }):''
+                            }
                         </List> 
                     </Popover>
                 </Badge>

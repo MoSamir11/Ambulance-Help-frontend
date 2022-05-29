@@ -74,6 +74,7 @@ export const AllAmbulance = () =>{
                         <TableHead style={{backgroundColor:'#089bab'}}>
                             <TableRow>
                                 <TableCell>Hospital Name</TableCell>
+                                <TableCell>Id</TableCell>
                                 <TableCell align="center">Driver Name</TableCell>
                                 <TableCell align="center">Driver Contact</TableCell>
                                 <TableCell align="center">Ambulance Number</TableCell>
@@ -84,6 +85,7 @@ export const AllAmbulance = () =>{
                             {ambulanceList.map((row) => (
                             <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">{hospital}</TableCell>
+                                <TableCell component="th" scope="row">{row._id}</TableCell>
                                 <TableCell align="center">{row.driverName}</TableCell>
                                 <TableCell align="center">{row.ambulanceNumber}</TableCell>
                                 <TableCell align="center">{row.driverContact}</TableCell>

@@ -1,4 +1,4 @@
-import { alpha, AppBar,InputBase, Drawer,Zoom,List,Divider,Button,Listener,ListItemText,ListItemIcon,Box, makeStyles, Toolbar, Typography, Badge, Avatar,PersonIcon, Tooltip,Container } from '@material-ui/core'
+import { AppBar, Zoom, Toolbar, Typography, Tooltip } from '@material-ui/core';
 import { Mail, Search, Notifications, Cancel, MenuOutlined, DriveEta } from '@material-ui/icons';
 import { FaAmbulance ,FaHospital,FaListUl} from 'react-icons/fa';
 import { BiListPlus } from 'react-icons/bi';
@@ -16,29 +16,31 @@ import React from 'react';
 import { FaCity, FaUser} from 'react-icons/fa';
 import { Notification } from './Notification';
 import axios from 'axios';
-export const ConsumerNavbar = () => {
-  
+export const ConsumerNavbar = (props) => {
+    console.log("20 props-->",props);
+    // <Notification notifications={props.notification} />
     const classes = style();
     const history = useHistory();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [notification,setNotification] = useState([]);
+    // const [notification,setNotification] = useState([]);
+    const notification = props.notification;
     const [openedItemId, setOpenedItemId] = React.useState(true);
     useEffect(()=>{
         const token = Cookies.get("consumer");
         const decode = jwt_decode(token);
         console.log("24-->",decode.user);
         console.log("Hello World")
-        setNotification(decode.user.notification);
+        // setNotification(decode.user.notification);
         var id = decode.user.id;
         axios.get(`http://localhost:5000/consumerList/${id}`)
         .then((res)=>{
             if(res.data.isSuccess){
             console.log("36-->",res.data.data)
-            setNotification(res.data.data.notification);
+            // setNotification(res.data.data.notification);
             }
         })
     },[])
-    // const [anchorEl, setAnchorEl] = React.useState(null);
+    console.log("41-->",notification)
     const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

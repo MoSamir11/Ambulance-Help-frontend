@@ -36,7 +36,7 @@ const myStyle = makeStyles((theme)=>({
       },
 }))
 export const AdminNavbar = (props) => {
-    console.log("39 props-->",props);
+    // console.log("39 props-->",props);
     const classes = style();
     const myClass = myStyle();
     const history = useHistory();
@@ -65,7 +65,7 @@ export const AdminNavbar = (props) => {
          .then((res)=>{
              if(res.data.isSuccess)
              {
-                 console.log("66-->",res.data.data.notification)
+                //  console.log("66-->",res.data.data.notification)
                  setNotification(res.data.data.notification)
                  setAmbulance(res.data.data.ambulance)
              }
@@ -111,7 +111,7 @@ export const AdminNavbar = (props) => {
         }
         //setOpen(!open);
       };
-      console.log("105-->",notifiction)
+    //   console.log("105-->",notifiction)
       const deleteNotification = (notificationId)=>{
         const data = {id:notificationId,hospitalId:hospitalId}  
         console.log(data);
