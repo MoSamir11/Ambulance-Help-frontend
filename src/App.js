@@ -23,6 +23,7 @@ import {PrivateRoute} from './component/PrivateRoute/PrivateRoute';
 import { ConsumerDashboard } from "./component/Consumer/ConsumerDashboard/ConsumerDashboard";
 import { Expanding } from "./component/Carousel/expand";
 import { AnExpand } from "./component/Carousel/anexpand";
+import ResponsiveDrawer from "./component/Consumer/Drawer";
 
 // import { Carousel } from "./component/Carousel/carousel";
 function App() {
@@ -67,10 +68,9 @@ function App() {
           <Route exact path="/consumer-dashboard" component={ConsumerDashboard} />
           <Route exact path="/consumer-dashboard/home" component={ConsumerDashboard} />
           <Route exact path="/comsumer-dashboard/aboutus" component={ConsumerDashboard} />
-          {/* <Route exact path="/carousel" component={Carousel} /> */}
           <Route exact path="/consumer-dashboard/aboutus" component={ConsumerDashboard} />
-          <Route exact path="/expanding" component={Expanding} />
-          <Route exact path="/expand" component={AnExpand} />
+          <Route exact path="/consumer-dashboard/blog" component={ConsumerDashboard} />
+          <Route exact path="/drawer" component={ResponsiveDrawer} />
         </Switch>
       </Router>
     </div>

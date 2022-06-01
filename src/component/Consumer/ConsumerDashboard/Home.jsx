@@ -88,7 +88,7 @@ export const Home = () =>{
       setOpenedItemId(clickedItemId);
     }
     //setOpen(!open);
-  };
+    };
   
     const [name,setName] = useState('');
     useEffect(()=>{
@@ -195,7 +195,7 @@ export const Home = () =>{
                                         <ListItemText primary={hospital.address} />
                                       </ListItemButton>
                                       <ListItemButton sx={{ pl: 3 }}>
-                                          <p>Specialist in : Heart Surgery</p>
+                                          <p>Specialist in : {hospital.specialist}</p>
                                       </ListItemButton>
                                       <ListItemButton sx={{ pl: 3 }}>
                                         <Button variant="contained" style={{backgroundColor:'#009688'}} size="small" onClick={()=>bookAmbulance(hospital._id)}>Book</Button>

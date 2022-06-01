@@ -12,12 +12,13 @@ import Cookies from 'js-cookie';
 import jwt_decode from "jwt-decode";
 import { useEffect } from 'react';
 import React from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import { FaCity, FaUser} from 'react-icons/fa';
 import { Notification } from './Notification';
 import axios from 'axios';
 export const ConsumerNavbar = (props) => {
-    console.log("20 props-->",props);
+    // console.log("20 props-->",props);
     // <Notification notifications={props.notification} />
     const classes = style();
     const history = useHistory();
@@ -29,18 +30,17 @@ export const ConsumerNavbar = (props) => {
         const token = Cookies.get("consumer");
         const decode = jwt_decode(token);
         console.log("24-->",decode.user);
-        console.log("Hello World")
         // setNotification(decode.user.notification);
         var id = decode.user.id;
         axios.get(`http://localhost:5000/consumerList/${id}`)
         .then((res)=>{
             if(res.data.isSuccess){
-            console.log("36-->",res.data.data)
+            // console.log("36-->",res.data.data)
             // setNotification(res.data.data.notification);
             }
         })
     },[])
-    console.log("41-->",notification)
+    // console.log("41-->",notification)
     const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

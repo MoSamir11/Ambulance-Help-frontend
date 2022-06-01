@@ -33,5 +33,23 @@ const style = makeStyles((theme) => ({
       display: "none",
     },
   },
+  menuIcon:{
+    display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+    },
+  },
+  logo:{
+    display:"block",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  box:{
+    display:"none",
+    [theme.breakpoints.down("sm")]:{
+      display:"block"
+    }
+  }
 }));
 export default style;

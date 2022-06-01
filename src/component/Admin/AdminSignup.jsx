@@ -12,11 +12,12 @@ export const AdminSignup = () =>{
           hospitalName:'',
           email:'',
           phone:'',
+          specialist:'',
           address:'',
           pin:'',
           password:'',
           latitude:'',
-          longitude:''
+          longitude:'',
       })
       useEffect(() => {
         // Update the document title using the browser API
@@ -49,6 +50,7 @@ export const AdminSignup = () =>{
                     hospitalName:inputField.hospitalName,
                     email:inputField.email,
                     phone:inputField.phone,
+                    specialist:inputField.specialist,
                     address:inputField.address,
                     pin:inputField.pin,
                     password:inputField.password,
@@ -61,6 +63,7 @@ export const AdminSignup = () =>{
                       if(res.data.isSuccess){
                           console.log("57-->",res.data)
                           alert(res.data.message)
+                          
                       }else{
                             alert(res.data.message)
                       }
@@ -73,19 +76,25 @@ export const AdminSignup = () =>{
               label:'Email',
               type:"text",
               name:"email",
-              placeholder:"Enter hospital name"
+              placeholder:"Enter email"
           },
           {
             label:'Phone',
             type:"number",
             name:"phone",
-            placeholder:"Enter phone number"
+            placeholder:"e.g: 123456789"
+        },
+        {
+            label:'Specialist In',
+            type:"text",
+            name:"specialist",
+            placeholder:"e.g: Heart Surgery"
         },
         {
             label:'City',
             type:"text",
             name:"address",
-            placeholder:"Enter hospital address"
+            placeholder:"e.g:Asansol"
         },
         {
             label:'Pin Code',
@@ -122,7 +131,7 @@ export const AdminSignup = () =>{
                             <Grid item sm={6}>
                                 <div className={classes.division}>
                                     <label htmlFor={field.type} className={classes.label}>{field.label}</label>
-                                    <input type={field.type} name={field.name} className={classes.form_control} onChange={inputHandler} value={inputField.name} />
+                                    <input type={field.type} name={field.name} placeholder={field.placeholder} className={classes.form_control} onChange={inputHandler} value={inputField.name} />
                                 </div>
                             </Grid>
                             )

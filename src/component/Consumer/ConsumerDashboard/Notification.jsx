@@ -28,7 +28,7 @@ export const Notification = (props) =>{
     var isAllData = false;
     
     var sum = 0;
-    console.log("props notification 28-->",props)
+    // console.log("props notification 28-->",props)
     for(var i in allData.notification)
     {
         sum++;
@@ -37,8 +37,8 @@ export const Notification = (props) =>{
     {
         isAllData=true;
     }
-    console.log("sum-->",sum);
-    console.log("allData-->",allData)
+    // console.log("sum-->",sum);
+    // console.log("allData-->",allData)
     const [openedItemId, setOpenedItemId] = React.useState(true);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -56,13 +56,13 @@ export const Notification = (props) =>{
     }
     // setOpen(!open);
     };
-    console.log(" 58-->",isAllData)
+    // console.log(" 58-->",isAllData)
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
      
     return(
         <>
-            <Badge badgeContent={sum?sum:0} color="secondary" style={{position:'fixed'}}>
+            <Badge badgeContent={sum>0?sum:0} color="secondary" style={{position:'fixed'}}>
                 <p aria-describedby={id} variant="contained" onClick={handleClick} className="nav-link text-light"><Notifications size={30}/></p>
                     <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose} anchorOrigin={{   vertical: 'bottom',   horizontal: 'left', }}>
                         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader">
